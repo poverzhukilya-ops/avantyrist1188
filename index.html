@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Регламент группы | Avantyurist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(145deg, #f0f4fa 0%, #e6edf5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a2c3e;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 48px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .group-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 60px;
+            margin: 0 auto 1.2rem auto;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+
+        .main-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e4b6e, #2c7fb8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 0.3rem;
+        }
+        
+        .group-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1f6392;
+            text-align: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .subtitle {
+            color: #5b6f8c;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9edf2;
+            display: block;
+            width: 100%;
+        }
+
+        .tabs-window {
+            background: #f8fafd;
+            border-radius: 28px;
+            margin: 1.5rem 0 1rem;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            max-height: 480px;
+            overflow-y: auto;
+        }
+
+        .tabs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tab-button {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            padding: 14px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f6392;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            text-align: left;
+        }
+
+        .tab-button:hover {
+            background: linear-gradient(135deg, #ffffff, #f0f6fe);
+            border-color: #bdd4e8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px -8px rgba(31,99,146,0.2);
+        }
+
+        .tab-button:active {
+            transform: translateY(1px);
+        }
+
+        .tab-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            width: 32px;
+            text-align: center;
+        }
+
+        .tab-text {
+            flex: 1;
+            line-height: 1.3;
+        }
+
+        .tabs-window::-webkit-scrollbar {
+            width: 5px;
+        }
+        .tabs-window::-webkit-scrollbar-track {
+            background: #e9edf2;
+            border-radius: 10px;
+        }
+        .tabs-window::-webkit-scrollbar-thumb {
+            background: #b9cfec;
+            border-radius: 10px;
+        }
+
+        .info-text {
+            margin-top: 1.2rem;
+            text-align: center;
+            color: #6c819e;
+            font-size: 0.75rem;
+            border-top: 1px solid #e9edf2;
+            padding-top: 1rem;
+        }
+
+        .decor-line {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #2c7fb8, #6aa9d0);
+            margin: 0.8rem auto 0;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 550px) {
+            .hero-card {
+                padding: 1.5rem;
+            }
+            .main-title {
+                font-size: 1.5rem;
+            }
+            .group-name {
+                font-size: 1.1rem;
+            }
+            .group-image {
+                width: 90px;
+                height: 90px;
+            }
+            .tabs-window {
+                max-height: 400px;
+            }
+            .tab-button {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+            .tab-icon {
+                font-size: 1.1rem;
+                width: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-card">
+            
+            <img src="photo_2026-03-26_07-43-54.jpg" alt="Avantyurist" class="group-image">
+            
+            <div class="main-title">
+                Регламент группы
+            </div>
+            <div class="group-name">
+                Avantyurist
+            </div>
+            <div class="subtitle">
+                📌 Правила и механизмы сообщества
+            </div>
+            
+            <div class="tabs-window">
+                <div class="tabs-container">
+                    
+                    <button class="tab-button" onclick="location.href='joint-projects.html'">
+                        <span class="tab-icon">🤝</span>
+                        <span class="tab-text">Совместные проекты</span>
+                    </button>
+                    
+                    <button class="tab-button" onclick="location.href='about.html'">
+                        <span class="tab-icon">📖</span>
+                        <span class="tab-text">Информация о группе</span>
+                    </button>
+                    
+                    <button class="tab-button" onclick="location.href='invest.html'">
+                        <span class="tab-icon">💰</span>
+                        <span class="tab-text">Одиночное инвестирование</span>
+                    </button>
+                    
+                    <button class="tab-button" onclick="location.href='reputation.html'">
+                        <span class="tab-icon">⭐</span>
+                        <span class="tab-text">Система репутации участников</span>
+                    </button>
+                    
+                    <button class="tab-button" onclick="location.href='verification.html'">
+                        <span class="tab-icon">✅</span>
+                        <span class="tab-text">Верификация участников</span>
+                    </button>
+                    <button class="tab-button" onclick="location.href='rating.html'">
+    <span class="tab-icon">🏆</span>
+    <span class="tab-text">Рейтинг участников</span>
+    <span class="tab-badge"></span>
+</button>
+                    
+                </div>
+            </div>
+            
+            <div class="decor-line"></div>
+            <div class="info-text">
+                <p>📋 Выберите вкладку — откроется подробная информация</p>
+                <p>🔽 Можно листать окно вниз</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

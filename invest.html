@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Одиночное инвестирование | Avantyurist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f4f8fe;
+            color: #102a3c;
+            line-height: 1.45;
+        }
+
+        .top-nav {
+            background: white;
+            border-bottom: 1px solid #e2edf2;
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.95);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #1f6392;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .back-link:hover {
+            color: #0f4c6f;
+            transform: translateX(-3px);
+        }
+        .nav-title {
+            font-weight: 600;
+            color: #2c5a7a;
+            font-size: 0.85rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.8rem 1.8rem 3rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #1a4a6e, #1f6797);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .page-header .lead {
+            color: #2c5575;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .rule-card {
+            background: white;
+            border-radius: 28px;
+            margin-bottom: 1.8rem;
+            overflow: hidden;
+            border: 1px solid #e6edf4;
+        }
+        .rule-header {
+            padding: 1rem 1.8rem;
+            background: #fbfeff;
+            border-bottom: 1px solid #eef2f8;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .rule-number {
+            background: #e2edfb;
+            color: #1c628b;
+            font-weight: 700;
+            font-size: 0.8rem;
+            border-radius: 40px;
+            padding: 4px 14px;
+        }
+        .rule-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #163a50;
+        }
+        .rule-content {
+            padding: 1.2rem 1.8rem 1.6rem;
+        }
+        .rule-content p {
+            margin-bottom: 0.7rem;
+            color: #1f3e54;
+        }
+        ul {
+            padding-left: 1.4rem;
+            margin: 0.7rem 0;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        .highlight-bg {
+            background: #eef6fc;
+            border-radius: 18px;
+            padding: 0.9rem 1.2rem;
+            margin: 0.8rem 0;
+            border-left: 3px solid #3182ce;
+        }
+        .important-note {
+            background: #fff7e5;
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            margin: 1rem 0 0.5rem;
+            border-left: 3px solid #f2b84e;
+        }
+        .footnote {
+            background: #e1eff9;
+            border-radius: 28px;
+            padding: 1.2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 640px) {
+            .rule-title {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            .rule-header {
+                padding: 0.8rem 1.2rem;
+            }
+            .rule-content {
+                padding: 1rem 1.2rem 1.3rem;
+            }
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <div class="nav-inner">
+            <a href="javascript:history.back()" class="back-link">← Вернуться на главную</a>
+            <div class="nav-title">💰 Одиночное инвестирование</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>💰 Одиночное инвестирование</h1>
+            <div class="lead">Правила участия в инвестиционных идеях сообщества</div>
+        </div>
+
+        <!-- 1. Общие положения -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Раздел 1</div>
+                <div class="rule-title">📌 Общие положения</div>
+            </div>
+            <div class="rule-content">
+                <p>Раздел «Одиночные инвестиции» предназначен для публикации и анализа инвестиционных идей, предлагаемых участниками группы.</p>
+                <div class="highlight-bg">📢 Все материалы носят информационный характер и не являются финансовой рекомендацией.</div>
+            </div>
+        </div>
+
+        <!-- 2. Публикация инвестиционных идей -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Раздел 2</div>
+                <div class="rule-title">📝 Публикация инвестиционных идей</div>
+            </div>
+            <div class="rule-content">
+                <p>Участник, предлагающий инвестиционную идею, обязан предоставить структурированную и понятную информацию для оценки другими участниками.</p>
+                <p><strong>Инвестиционная идея должна включать:</strong></p>
+                <ul>
+                    <li><strong>Суть предложения</strong> — во что заключается инвестиция</li>
+                    <li><strong>Аналитическое обоснование</strong> — почему это может сработать</li>
+                    <li><strong>Предполагаемую доходность</strong> — ожидаемый процент или сумма</li>
+                    <li><strong>Возможные риски</strong> — что может пойти не так</li>
+                    <li><strong>Срок инвестирования</strong> — на какой период</li>
+                    <li><strong>Пошаговый способ реализации</strong> — как это будет сделано</li>
+                    <li><strong>Сопоставление с действующим законодательством и возможные правовые риски</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. Принципы ответственного инвестирования -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Раздел 3</div>
+                <div class="rule-title">🛡️ Принципы ответственного инвестирования</div>
+            </div>
+            <div class="rule-content">
+                <p><strong>Участник обязан:</strong></p>
+                <ul>
+                    <li>Использовать только те средства, потеря которых не повлияет на финансовое положение</li>
+                    <li>Соблюдать диверсификацию (распределение капитала)</li>
+                    <li>Не концентрировать средства в одном активе или проекте</li>
+                    <li>Избегать инвестиций в сомнительные проекты без достаточной проверки</li>
+                </ul>
+                <div class="important-note">⚠️ <strong>Важно:</strong> Инвестируйте только те средства, которые готовы потерять без ущерба для своего благосостояния.</div>
+            </div>
+        </div>
+
+        <!-- 4. Поддержка участников -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Раздел 4</div>
+                <div class="rule-title">🤝 Поддержка участников</div>
+            </div>
+            <div class="rule-content">
+                <p>Если участник заинтересовался конкретной инвестиционной идеей, но не знает, как её реализовать, другие участники группы оказывают информационную поддержку, разъясняют процесс и помогают разобраться.</p>
+                <div class="highlight-bg">💡 Такой подход способствует доверию, взаимовыгоде и совместному росту сообщества.</div>
+            </div>
+        </div>
+
+        <!-- 5. Принятие решений и ответственность -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Раздел 5</div>
+                <div class="rule-title">⚖️ Принятие решений и ответственность</div>
+            </div>
+            <div class="rule-content">
+                <p>Участник, ознакомившийся с инвестиционной идеей, самостоятельно принимает решение об инвестировании и несёт полную ответственность за свои действия и их последствия.</p>
+                <div class="important-note">📌 Идеи без достаточного обоснования, с отсутствием ключевых данных или вводящие в заблуждение, к публикации не допускаются.</div>
+            </div>
+        </div>
+
+        <div class="footnote">
+            📌 <strong>Одиночное инвестирование</strong> — раздел для обмена инвестиционными идеями.<br>
+            Помните: прошлая доходность не гарантирует будущий результат. Все решения вы принимаете самостоятельно.
+        </div>
+    </div>
+</body>
+</html>

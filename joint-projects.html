@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Совместные проекты | Полный регламент</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f4f8fe;
+            color: #102a3c;
+            line-height: 1.45;
+        }
+
+        /* навигация для возврата на главную */
+        .top-nav {
+            background: white;
+            border-bottom: 1px solid #e2edf2;
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.95);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #1f6392;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .back-link:hover {
+            color: #0f4c6f;
+            transform: translateX(-3px);
+        }
+        .nav-title {
+            font-weight: 600;
+            color: #2c5a7a;
+            font-size: 0.85rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.8rem 1.8rem 3rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #1a4a6e, #1f6797);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .page-header .lead {
+            color: #2c5575;
+            margin-top: 0.5rem;
+            border-left: 4px solid #2c7fb8;
+            padding-left: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rule-card {
+            background: white;
+            border-radius: 28px;
+            margin-bottom: 1.8rem;
+            overflow: hidden;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e6edf4;
+            transition: all 0.2s;
+        }
+        .rule-header {
+            padding: 1rem 1.8rem;
+            background: #fbfeff;
+            border-bottom: 1px solid #eef2f8;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .rule-number {
+            background: #e2edfb;
+            color: #1c628b;
+            font-weight: 700;
+            font-size: 0.8rem;
+            border-radius: 40px;
+            padding: 4px 14px;
+        }
+        .rule-title {
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: #163a50;
+        }
+        .rule-content {
+            padding: 1.2rem 1.8rem 1.6rem;
+        }
+        .rule-content p {
+            margin-bottom: 0.7rem;
+            color: #1f3e54;
+        }
+        ul, .custom-list {
+            padding-left: 1.4rem;
+            margin: 0.7rem 0;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        .highlight-bg {
+            background: #eef6fc;
+            border-radius: 18px;
+            padding: 0.9rem 1.2rem;
+            margin: 0.8rem 0;
+            border-left: 3px solid #3182ce;
+        }
+        .sportant-note {
+            background: #fff7e5;
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            margin: 1rem 0 0.5rem;
+            border-left: 3px solid #f2b84e;
+        }
+        hr {
+            margin: 0.8rem 0;
+            border: none;
+            height: 1px;
+            background: #dee9f0;
+        }
+        .footnote {
+            background: #e1eff9;
+            border-radius: 28px;
+            padding: 1.2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 640px) {
+            .rule-title {
+                font-size: 1.2rem;
+            }
+            .container {
+                padding: 1rem 1rem 2rem;
+            }
+            .rule-header {
+                padding: 0.8rem 1.2rem;
+            }
+            .rule-content {
+                padding: 1rem 1.2rem 1.3rem;
+            }
+            .page-header h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="back-link">← Вернуться на главную</a>
+            <div class="nav-title">📖 Регламент сообщества</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>🤝 Совместные проекты</h1>
+            <div class="lead">Механика, как устроены совместные проекты.</div>
+        </div>
+
+        <!-- 1. Предложение проекта -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Этап 1</div>
+                <div class="rule-title">📌 Предложение проекта</div>
+            </div>
+            <div class="rule-content">
+                <p>Участник, предлагающий проект, обязан подробно описать его от начала до конца, чтобы другим участникам было понятно:</p>
+                <ul>
+                    <li><strong>суть проекта</strong>;</li>
+                    <li><strong>цель проекта</strong>;</li>
+                    <li><strong>этапы реализации</strong>;</li>
+                    <li><strong>необходимые ресурсы</strong>;</li>
+                    <li><strong>возможные риски</strong>;</li>
+                    <li><strong>ожидаемый результат</strong>.</li>
+                </ul>
+                <div class="highlight-bg">📢 Информация о проекте публикуется в канале и в группе сообщества.</div>
+            </div>
+        </div>
+
+        <!-- 2. Обсуждение проекта -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Этап 2</div>
+                <div class="rule-title">🗣️ Обсуждение проекта</div>
+            </div>
+            <div class="rule-content">
+                <p>После публикации проводится обсуждение, голосование или совместное совещание. По итогам определяется:</p>
+                <ul>
+                    <li>реалистичность проекта;</li>
+                    <li>вероятность успешного результата;</li>
+                    <li>кто готов участвовать;</li>
+                    <li>необходимость инвестиций, ресурсов или распределения задач.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. Отдельная ветка проекта -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Этап 3</div>
+                <div class="rule-title">🧵 Создание отдельной ветки проекта</div>
+            </div>
+            <div class="rule-content">
+                <p>После одобрения проекта создаётся <strong>отдельная ветка в группе</strong>, где участники обсуждают:</p>
+                <ul>
+                    <li>стратегию проекта;</li>
+                    <li>обязанности каждого участника;</li>
+                    <li>необходимые ресурсы;</li>
+                    <li>сроки и этапы;</li>
+                    <li>порядок вложений и распределения прибыли/убытков.</li>
+                </ul>
+                <div class="important-note">⚠️ Все договорённости должны быть подтверждены в чате <strong>до начала реализации проекта</strong>.</div>
+            </div>
+        </div>
+
+        <!-- 4. Инвестирование и распределение -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Правило 4</div>
+                <div class="rule-title">📊 Инвестирование и распределение прибыли/убытков</div>
+            </div>
+            <div class="rule-content">
+                <p>Если проект требует вложений, прибыль и убытки распределяются <strong>пропорционально вкладу участников</strong>.</p>
+                <ul>
+                    <li>Общая сумма вложений принимается за <strong>100%</strong>.</li>
+                    <li>Каждый участник получает такой же процент прибыли или несёт такой же процент убытка, какой процент от общей суммы он внёс.</li>
+                    <li>Прибыль и убытки распределяются только по подтверждённым инвестиционным вкладам, если участники заранее не договорились учитывать труд, услуги или организацию проекта отдельно.</li>
+                </ul>
+                <div class="highlight-bg">📐 <strong>Пример:</strong> общий бюджет 100 000₽. Участник А внёс 40 000₽ → доля 40%. При прибыли 50 000₽ получает 20 000₽. При убытке 30 000₽ — его доля убытка 12 000₽.</div>
+            </div>
+        </div>
+
+        <!-- 5. Порядок сбора средств -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Правило 5</div>
+                <div class="rule-title">📋 Порядок сбора средств и учёта вклада</div>
+            </div>
+            <div class="rule-content">
+                <p>Перед началом проекта участники совместно определяют:</p>
+                <ul>
+                    <li>что необходимо для реализации проекта;</li>
+                    <li>список нужных вещей, материалов, услуг и инструментов;</li>
+                    <li>кто за что отвечает;</li>
+                    <li>кто что предоставляет или покупает.</li>
+                </ul>
+                <p>Все необходимые ресурсы переводятся в <strong>денежный эквивалент</strong> для подсчёта общего вклада.</p>
+            </div>
+        </div>
+
+        <!-- 6. Оценка вклада -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Правило 6</div>
+                <div class="rule-title">💰 Оценка вклада участников</div>
+            </div>
+            <div class="rule-content">
+                <p>Вклад участника может быть в <strong>трёх формах</strong>:</p>
+                <ul>
+                    <li><strong>1) Деньги</strong> — учитываются по фактической внесённой сумме.</li>
+                    <li><strong>2) Купленные вещи и расходники</strong> — стоимость по чеку или подтверждённой цене.</li>
+                    <li><strong>3) Вещи, уже имеющиеся у участника</strong>:
+                        <ul>
+                            <li>если вещь расходуется в проекте или передаётся полностью — по средней рыночной цене;</li>
+                            <li>если инструмент, техника или оборудование используется временно и остаётся у владельца — по средней рыночной стоимости аренды на срок использования.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="highlight-bg">🧾 <strong>Подтверждение:</strong> все расходы, покупки и оценки должны подтверждаться в ветке проекта: чеками, выписками или ссылками на среднюю рыночную цену/стоимость аренды.</div>
+            </div>
+        </div>
+
+        <!-- 7. Распределение обязанностей -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Правило 7</div>
+                <div class="rule-title">🤝 Распределение обязанностей</div>
+            </div>
+            <div class="rule-content">
+                <p>После согласования списка нужных вещей и задач они распределяются между участниками по договорённости. <strong>Каждый участник подтверждает</strong>:</p>
+                <ul>
+                    <li>какие задачи он берёт на себя;</li>
+                    <li>что он предоставляет;</li>
+                    <li>сроки и объём выполнения.</li>
+                </ul>
+                <p>Без явного подтверждения в ветке проекта задача считается не закреплённой.</p>
+            </div>
+        </div>
+
+        <!-- 8. Спорные ситуации -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Правило 8</div>
+                <div class="rule-title">⚖️ Спорные ситуации</div>
+            </div>
+            <div class="rule-content">
+                <p>Если возникает спор по стоимости вещи, аренде, расходу или вкладу, окончательная оценка определяется <strong>совместно участниками проекта</strong> через:</p>
+                <ul>
+                    <li>обсуждение в ветке проекта;</li>
+                    <li>голосование (простое большинство);</li>
+                    <li>иной заранее согласованный способ.</li>
+                </ul>
+                <div class="important-note">🛡️ Любое решение фиксируется в чате. Основа — чеки, скрины, ссылки на рыночные цены.</div>
+            </div>
+        </div>
+
+        <!-- Дополнительный блок: алгоритм и решение проблем -->
+        <div class="rule-card">
+            <div class="rule-header">
+                <div class="rule-number">Помощь</div>
+                <div class="rule-title">❓ Как устроена группа & решение проблем</div>
+            </div>
+            <div class="rule-content">
+                <p><strong>🔹 Как предложить проект?</strong><br>Создайте пост в группе с тегом [ПРЕДЛОЖЕНИЕ] и полным описанием по этапу 1. После этого запускается обсуждение.</p>
+                <p><strong>🔹 Где создаётся ветка проекта?</strong><br>После одобрения создаётся отдельная тема (чат/тред), куда приглашаются все участники. Все ключевые решения — только в ветке.</p>
+                <p><strong>🔹 Как подтвердить вклад вещью, которая уже есть?</strong><br>Сделайте сообщение в ветке: «Предоставляю [название], рыночная цена/аренда = [сумма], ссылка на аналог/скрин». Участники подтверждают или обсуждают оценку.</p>
+                <p><strong>🔹 Что делать, если участник не выполняет обязательства?</strong><br>Фиксируем факт в чате. При распределении прибыли/убытков это может повлиять на решение группы, если было оговорено заранее.</p>
+                <hr>
+                <div class="highlight-bg">💡 <strong>Главный принцип:</strong> максимальная прозрачность на каждом этапе. Все чеки, назначения, сроки — только письменно в чате проекта.</div>
+            </div>
+        </div>
+
+        <div class="footnote">
+            📌 <strong>Правила группы являются обязательными для всех участников совместных проектов.</strong><br>
+            Переходя по ссылке и участвуя в проектах, вы подтверждаете согласие с данным регламентом.<br>
+            По вопросам — обращайтесь к администраторам сообщества.
+        </div>
+    </div>
+</body>
+</html>

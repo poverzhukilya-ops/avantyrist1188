@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Верификация участника | Avantyurist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f4f8fe;
+            color: #102a3c;
+            line-height: 1.45;
+        }
+
+        .top-nav {
+            background: white;
+            border-bottom: 1px solid #e2edf2;
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.95);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #1f6392;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .back-link:hover {
+            color: #0f4c6f;
+            transform: translateX(-3px);
+        }
+        .nav-title {
+            font-weight: 600;
+            color: #2c5a7a;
+            font-size: 0.85rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.8rem 1.8rem 3rem;
+        }
+
+        /* Основная карточка с содержимым */
+        .verification-main-card {
+            background: white;
+            border-radius: 32px;
+            border: 1px solid #e6edf4;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        }
+
+        /* Блок с ботом (иконка + ник) — вверху */
+        .bot-hero {
+            background: linear-gradient(135deg, #f8fbfe 0%, #ffffff 100%);
+            padding: 1.6rem 2rem;
+            border-bottom: 1px solid #eef2f8;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .bot-avatar-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            border: 2px solid white;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #e2edfb;
+        }
+
+        .bot-avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .bot-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .bot-nickname {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #1a4a6e, #1f6797);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .bot-badge {
+            font-size: 0.7rem;
+            background: #eef2fa;
+            color: #2c7fb8;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            width: fit-content;
+            font-weight: 500;
+        }
+
+        /* Внутренний контент */
+        .content-inner {
+            padding: 2rem 2rem 2rem;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #1a4a6e, #1f6797);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.4rem;
+        }
+
+        .subhead {
+            color: #2c5575;
+            font-size: 0.9rem;
+            margin-bottom: 1.8rem;
+            border-left: 3px solid #3182ce;
+            padding-left: 1rem;
+        }
+
+        /* Шаги верификации */
+        .steps-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #163a50;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: #e2edfb;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+            color: #1f6392;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            flex: 1;
+        }
+
+        .step-text h4 {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1a4a6e;
+            margin-bottom: 4px;
+        }
+
+        .step-text p {
+            color: #2c5575;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Блок с ограничениями (3 попытки) */
+        .attempts-block {
+            background: #fef7e8;
+            border-radius: 24px;
+            padding: 1.2rem 1.4rem;
+            margin: 1.8rem 0 1.5rem;
+            border-left: 4px solid #f5a623;
+        }
+
+        .attempts-header {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #b45f1b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.8rem;
+        }
+
+        .attempt-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0.8rem;
+        }
+
+        .attempt-list li {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            color: #4a3b1c;
+        }
+
+        .attempt-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;  /* ← убираем нижний отступ */
+}
+
+.attempt-warning {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #b45f1b;
+    background: #fff2df;
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 40px;
+    margin-top: 0;     /* ← убираем верхний отступ */
+}
+
+        /* Блок "Зачем это нужно" */
+        .why-block {
+            background: #eef4fc;
+            border-radius: 24px;
+            padding: 1.2rem 1.4rem;
+            margin: 1.5rem 0;
+        }
+
+        .why-header {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #1f6392;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.8rem;
+        }
+
+        .why-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .why-list li {
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            padding-left: 1.4rem;
+            position: relative;
+            color: #1f3e54;
+        }
+
+        .why-list li::before {
+            content: "•";
+            color: #2c7fb8;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Футер с цитатой */
+        .footer-quote {
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #2c7fb8;
+            margin-top: 1.6rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .small-note {
+            font-size: 0.7rem;
+            color: #7f8fa4;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            .bot-hero {
+                padding: 1.2rem;
+            }
+            .bot-avatar-circle {
+                width: 56px;
+                height: 56px;
+            }
+            .bot-nickname {
+                font-size: 1.2rem;
+            }
+            .content-inner {
+                padding: 1.2rem;
+            }
+            .page-title {
+                font-size: 1.4rem;
+            }
+            .step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.85rem;
+            }
+            .step-text h4 {
+                font-size: 0.9rem;
+            }
+            .attempt-list li strong {
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <div class="nav-inner">
+            <a href="javascript:history.back()" class="back-link">← Вернуться на главную</a>
+            <div class="nav-title">✅ Верификация участника</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="verification-main-card">
+            <!-- 🔹 Верхний блок: иконка бота (круг) + никнейм, как в Телеграме -->
+            <div class="bot-hero">
+                <div class="bot-avatar-circle">
+                    <!-- Картинка бота — файл penguin.jpg лежит в той же папке -->
+                    <img src="penguin.jpg" alt="@AvantyuristBot">
+                </div>
+                <div class="bot-info">
+                    <div class="bot-nickname">
+                        @AvantyuristBot
+                    </div>
+                    <div class="bot-badge">
+                        Telegram-бот верификации
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-inner">
+                <div class="page-title">
+                    ✅ Верификация участника
+                </div>
+                <div class="subhead">
+                    Чтобы попасть в сообщество, каждый участник проходит простой и понятный процесс через Telegram-бота.
+                </div>
+
+                <!-- 📌 Как это работает (4 шага) -->
+                <div class="steps-section">
+                    <div class="section-title">
+                        📌 Как это работает
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <h4>Команда /start</h4>
+                            <p>Вы пишете боту, и он приветствует вас, объясняя дальнейшие шаги.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <h4>Проверка «Я не робот»</h4>
+                            <p>Один клик — и проверка пройдена. Без сложных заданий и лишних действий.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <h4>Ознакомление с регламентом</h4>
+                            <p>Бот показывает правила сообщества. Вы подтверждаете, что ознакомились и согласны с ними.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">
+                            <h4>Приглашение в группу</h4>
+                            <p>После этого вы получаете ссылку для входа в сообщество.<br>Сначала — правила, затем — доступ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🔄 Ограничение на повторный вход (3 попытки) -->
+                <div class="attempts-block">
+                    <div class="attempts-header">
+                        🔄 Ограничение на повторный вход
+                    </div>
+                    <ul class="attempt-list">
+                        <li><strong>Первое вступление</strong> — попытка №1</li>
+                        <li><strong>Повторный вход после выхода</strong> — попытка №2</li>
+                        <li><strong>Третий вход</strong> — попытка №3</li>
+                    </ul>
+                    <div class="attempt-warning">
+                        ⚠️ После третьего выхода доступ к группе закрывается.
+                    </div>
+                </div>
+
+                <!-- 🛡️ Зачем это нужно -->
+                <div class="why-block">
+                    <div class="why-header">
+                        🛡️ Зачем это нужно
+                    </div>
+                    <ul class="why-list">
+                        <li>В сообщество попадают только реальные люди</li>
+                        <li>Все участники заранее знакомятся с правилами</li>
+                        <li>Поддерживается комфортная и безопасная атмосфера общения</li>
+                    </ul>
+                </div>
+
+                <!-- Цитата про Avantyurist -->
+                <div class="footer-quote">
+                    Avantyurist — пространство для своих, где всё по-честному.
+                </div>
+                <div class="small-note">
+                    🔐 Бот не передаёт данные третьим лицам. Верификация занимает меньше минуты.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
