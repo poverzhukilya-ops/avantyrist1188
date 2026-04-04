@@ -303,47 +303,52 @@
     </div>
 
 <script>
-    // Используем JSON файл вместо API (так надежнее)
-    const RATING_JSON_URL = 'endearing-happiness-production-cc6a.up.railway.app';
+    // Используем API бота на Railway
+    const RATING_JSON_URL = 'https://endearing-happiness-production-cc6a.up.railway.app/api/rating';
 
     async function loadRating() {
-    const tableContainer = document.getElementById('ratingTable');
-    
-    try {
-        const response = await fetch(RATING_JSON_URL + '?t=' + Date.now());
+        const tableContainer = document.getElementById('ratingTable');
         
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        // data уже имеет структуру { success: true, data: [...] }
-        if (data.success && data.data && data.data.length > 0) {
-            const totalUsers = data.total || data.data.length;
-            const totalPoints = data.data.reduce((sum, u) => sum + u.points, 0);
-            const totalProjects = data.data.reduce((sum, u) => sum + (u.projects || 0), 0);
+        try {
+            const response = await fetch(RATING_JSON_URL + '?t=' + Date.now());
             
-            document.getElementById('totalUsers').textContent = totalUsers;
-            document.getElementById('totalProjects').textContent = totalProjects;
-            document.getElementById('totalPoints').textContent = totalPoints;
-            document.getElementById('avgPoints').textContent = Math.round(totalPoints / totalUsers);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
             
-            displayRatingTable(data.data);
-        } else {
-            tableContainer.innerHTML = '<div class="empty">📭 Пока нет участников в рейтинге</div>';
+            const data = await response.json();
+            
+            if (data.success && data.data && data.data.length > 0) {
+                const totalUsers = data.total || data.data.length;
+                const totalPoints = data.data.reduce((sum, u) => sum + u.points, 0);
+                const totalProjects = data.data.reduce((sum, u) => sum + (u.projects || 0), 0);
+                
+                document.getElementById('totalUsers').textContent = totalUsers;
+                document.getElementById('totalProjects').textContent = totalProjects;
+                document.getElementById('totalPoints').textContent = totalPoints;
+                document.getElementById('avgPoints').textContent = Math.round(totalPoints / totalUsers);
+                
+                displayRatingTable(data.data);
+                
+                if (data.updated_at) {
+                    const updateTime = new Date(data.updated_at).toLocaleString();
+                    const updateElem = document.getElementById('lastUpdate');
+                    if (updateElem) updateElem.innerHTML = `<small>Обновлено: ${updateTime}</small>`;
+                }
+            } else {
+                tableContainer.innerHTML = '<div class="empty">📭 Пока нет участников в рейтинге</div>';
+            }
+            
+        } catch (error) {
+            console.error('Ошибка:', error);
+            tableContainer.innerHTML = `
+                <div class="error">
+                    ❌ Не удалось загрузить рейтинг: ${error.message}<br>
+                    <button class="retry-btn" onclick="loadRating()">🔄 Попробовать снова</button>
+                </div>
+            `;
         }
-        
-    } catch (error) {
-        console.error('Ошибка:', error);
-        tableContainer.innerHTML = `
-            <div class="error">
-                ❌ Не удалось загрузить рейтинг: ${error.message}<br>
-                <button class="retry-btn" onclick="loadRating()">🔄 Попробовать снова</button>
-            </div>
-        `;
     }
-}
 
     function displayRatingTable(users) {
         let html = `
