@@ -2,173 +2,397 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рейтинг и регламент — Avantyrist Community</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Рейтинг участников | Avantyurist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Здесь оставьте ВСЕ ваши существующие стили (CSS) без изменений */
-        /* Чтобы не сломать дизайн, я не трогаю стили, только структуру HTML */
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f7fb;
+        * {
             margin: 0;
-            padding: 20px;
-            color: #1e293b;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 32px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            padding: 24px 32px 40px;
         }
-        h1 {
-            font-size: 1.8rem;
-            margin-top: 0;
+
+        /* Кнопка назад */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        /* Заголовок */
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
             margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-        .sub {
-            color: #475569;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 16px;
-            margin-bottom: 24px;
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
         }
+
+        /* Карточки статистики */
         .stats-grid {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            background: #f8fafc;
-            border-radius: 24px;
-            padding: 20px 24px;
-            margin-bottom: 32px;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
+
         .stat-card {
-            flex: 1;
-            min-width: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .stat-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #475569;
+
+        .stat-card:hover {
+            transform: translateY(-5px);
         }
+
         .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #0f172a;
-            line-height: 1.2;
+            font-size: 2.2rem;
+            font-weight: 800;
         }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        /* Таблица рейтинга */
+        .rating-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .rating-header {
+            padding: 1.2rem 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .rating-header h2 {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .refresh-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            padding: 0 0.5rem 0.5rem 0.5rem;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 16px;
         }
-        th, td {
-            text-align: left;
-            padding: 12px 8px;
-            border-bottom: 1px solid #e2e8f0;
-        }
+
         th {
-            color: #475569;
+            text-align: left;
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.8);
             font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .positive {
-            color: #10b981;
-            font-weight: 600;
+
+        td {
+            padding: 1rem;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .info-note {
-            background: #eef2ff;
-            padding: 16px 20px;
-            border-radius: 20px;
-            margin-top: 32px;
-            color: #1e40af;
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
-        @media (max-width: 640px) {
-            .container { padding: 16px; }
-            .stats-grid { flex-direction: column; gap: 12px; }
+
+        /* Медали */
+        .position {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .gold {
+            color: #ffd700;
+        }
+
+        .silver {
+            color: #c0c0c0;
+        }
+
+        .bronze {
+            color: #cd7f32;
+        }
+
+        /* Загрузка и ошибки */
+        .loading, .error, .empty {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Кнопка "Попробовать снова" без вращения */
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Адаптив */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            th, td {
+                padding: 0.7rem;
+                font-size: 0.8rem;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>📊 Рейтинг и регламент</h1>
-    <div class="sub">Правила начисления баллов и текущая статистика сообщества</div>
+    <div class="container">
+        <a href="index.html" class="back-btn">← На главную</a>
 
-    <!-- Общие показатели (оставляем только три) -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-label">👥 Участников</div>
-            <div class="stat-value" id="totalMembers">—</div>
+        <div class="header">
+            <h1>🏆 Рейтинг участников</h1>
+            <p>Avantyurist — сообщество инициативных людей</p>
         </div>
-        <div class="stat-card">
-            <div class="stat-label">🏆 Всего очков</div>
-            <div class="stat-value" id="totalPoints">—</div>
+
+        <!-- Статистика: убран блок "Проектов", оставлены Участники, Всего очков, Средний рейтинг -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalUsers">—</div>
+                <div class="stat-label">Участников</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalPoints">—</div>
+                <div class="stat-label">Всего очков</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgPoints">—</div>
+                <div class="stat-label">Средний рейтинг</div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label">⭐ Средний рейтинг</div>
-            <div class="stat-value" id="avgRating">—</div>
+        <div id="lastUpdate" style="text-align: center; color: rgba(255,255,255,0.6); font-size: 0.7rem; margin-top: 1rem;"></div>
+
+        <!-- Таблица рейтинга -->
+        <div class="rating-container">
+            <div class="rating-header">
+                <h2>📊 Таблица лидеров</h2>
+                <button class="refresh-btn" onclick="loadRating()">🔄 Обновить</button>
+            </div>
+            <div class="table-wrapper" id="ratingTable">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 1rem;">Загрузка рейтинга...</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- Таблица участников: только имя / ссылка и очки -->
-    <h2>🏅 Участники</h2>
-    <table id="ratingTable">
-        <thead>
-            <tr><th>Участник</th><th>Очки</th></tr>
-        </thead>
-        <tbody>
-            <tr><td colspan="2">Загрузка данных...</td></tr>
-        </tbody>
-    </table>
-
-    <div class="info-note">
-        <strong>⚡ Как начисляются очки:</strong><br>
-        • 👍 Лайк под вашим сообщением — <strong>+10 очков</strong><br>
-        • 👎 Дизлайк под вашим сообщением — <strong>-10 очков</strong><br>
-        • Баллы обновляются автоматически при реакциях в группе.
-    </div>
-</div>
 
 <script>
-    // Функция для загрузки данных с бэкенда (вашего бота или API)
-    async function loadRatingData() {
+    // Используем API бота на Railway
+    const RATING_JSON_URL = 'https://raw.githubusercontent.com/poverzhukilya-ops/telegram-verification-bot/main/data/rating.json';
+    
+    async function loadRating() {
+        const tableContainer = document.getElementById('ratingTable');
+        
         try {
-            // ⚠️ ЗАМЕНИТЕ ЭТОТ URL НА РЕАЛЬНЫЙ ЭНДПОЙНТ ВАШЕГО БОТА
-            // Пример: https://ваш-бот.herokuapp.com/api/rating
-            const response = await fetch('/api/rating'); 
+            const response = await fetch(RATING_JSON_URL + '?t=' + Date.now());
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
             const data = await response.json();
-
-            // Обновляем общие показатели
-            document.getElementById('totalMembers').innerText = data.totalMembers || 0;
-            document.getElementById('totalPoints').innerText = data.totalPoints || 0;
-            document.getElementById('avgRating').innerText = (data.avgRating || 0).toFixed(1);
-
-            // Заполняем таблицу участников
-            const tbody = document.querySelector('#ratingTable tbody');
-            tbody.innerHTML = '';
-            if (data.users && data.users.length) {
-                for (const user of data.users) {
-                    const row = tbody.insertRow();
-                    const cellName = row.insertCell(0);
-                    const cellPoints = row.insertCell(1);
-                    cellName.innerText = user.name || `User ${user.id}`;
-                    cellPoints.innerText = user.points;
-                    if (user.points > 0) cellPoints.className = 'positive';
+            
+            if (data.success && data.data && data.data.length > 0) {
+                const totalUsers = data.total || data.data.length;
+                const totalPoints = data.data.reduce((sum, u) => sum + u.points, 0);
+                
+                document.getElementById('totalUsers').textContent = totalUsers;
+                document.getElementById('totalPoints').textContent = totalPoints;
+                document.getElementById('avgPoints').textContent = Math.round(totalPoints / totalUsers);
+                
+                displayRatingTable(data.data);
+                
+                if (data.updated_at) {
+                    const updateTime = new Date(data.updated_at).toLocaleString();
+                    const updateElem = document.getElementById('lastUpdate');
+                    if (updateElem) updateElem.innerHTML = `<small>Обновлено: ${updateTime}</small>`;
                 }
             } else {
-                tbody.innerHTML = '<tr><td colspan="2">Нет данных об участниках</td></tr>';
+                tableContainer.innerHTML = '<div class="empty">📭 Пока нет участников в рейтинге</div>';
             }
+            
         } catch (error) {
-            console.error('Ошибка загрузки рейтинга:', error);
-            document.querySelector('#ratingTable tbody').innerHTML = '<tr><td colspan="2">⚠️ Не удалось загрузить рейтинг. Убедитесь, что бот работает.</td></tr>';
+            console.error('Ошибка:', error);
+            tableContainer.innerHTML = `
+                <div class="error">
+                    ❌ Не удалось загрузить рейтинг: ${error.message}<br>
+                    <button class="retry-btn" onclick="loadRating()">🔄 Попробовать снова</button>
+                </div>
+            `;
         }
     }
 
-    // Загружаем данные при открытии страницы
-    loadRatingData();
-    // И обновляем каждые 60 секунд (опционально)
-    setInterval(loadRatingData, 60000);
+    function displayRatingTable(users) {
+        // Таблица: убраны колонки Уровень, Проекты, Инвестиции
+        let html = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Участник</th>
+                        <th>Очки</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        
+        users.forEach(user => {
+            let medal = '';
+            let medalClass = '';
+            
+            if (user.position === 1) {
+                medal = '🥇';
+                medalClass = 'gold';
+            } else if (user.position === 2) {
+                medal = '🥈';
+                medalClass = 'silver';
+            } else if (user.position === 3) {
+                medal = '🥉';
+                medalClass = 'bronze';
+            }
+            
+            const name = user.name || `@${user.username}`;
+            
+            html += `
+                <tr>
+                    <td class="position ${medalClass}">${medal || user.position}</td>
+                    <td><strong>${escapeHtml(name)}</strong></td>
+                    <td><strong>${user.points}</strong></td>
+                </tr>
+            `;
+        });
+        
+        html += `
+                </tbody>
+            </table>
+        `;
+        
+        document.getElementById('ratingTable').innerHTML = html;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Загружаем при открытии
+    loadRating();
+    
+    // Автообновление каждые 30 секунд
+    setInterval(loadRating, 30000);
 </script>
 </body>
 </html>
