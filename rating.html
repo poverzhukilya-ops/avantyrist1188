@@ -245,6 +245,25 @@
                 font-size: 1.5rem;
             }
         }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .status-online {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+        }
+
+        .status-offline {
+            background: rgba(244, 67, 54, 0.3);
+            color: #f44336;
+        }
     </style>
 </head>
 <body>
@@ -256,7 +275,7 @@
             <p>Avantyurist — сообщество инициативных людей</p>
         </div>
 
-        <!-- Статистика: убран блок "Проектов", оставлены Участники, Всего очков, Средний рейтинг -->
+        <!-- Статистика -->
         <div class="stats-grid" id="statsGrid">
             <div class="stat-card">
                 <div class="stat-value" id="totalUsers">—</div>
@@ -272,6 +291,7 @@
             </div>
         </div>
         <div id="lastUpdate" style="text-align: center; color: rgba(255,255,255,0.6); font-size: 0.7rem; margin-top: 1rem;"></div>
+        <div id="apiStatus" style="text-align: center; margin-top: 0.5rem;"></div>
 
         <!-- Таблица рейтинга -->
         <div class="rating-container">
@@ -289,14 +309,57 @@
     </div>
 
 <script>
-    // Используем API бота на Railway
-    const RATING_JSON_URL = 'https://raw.githubusercontent.com/poverzhukilya-ops/telegram-verification-bot/main/data/rating.json';
+    // ============ НАСТРОЙКИ ============
+    // API endpoint бота (замени на реальный URL после деплоя)
+    const API_BASE_URL = 'https://your-bot-api.up.railway.app'; // ЗАМЕНИ НА РЕАЛЬНЫЙ URL
+    // Резервный вариант - загрузка из GitHub (если API недоступен)
+    const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/poverzhukilya-ops/telegram-verification-bot/main/data/rating.json';
+    
+    let useApi = true; // Пытаемся использовать API сначала
     
     async function loadRating() {
         const tableContainer = document.getElementById('ratingTable');
+        const apiStatusDiv = document.getElementById('apiStatus');
         
+        // Пытаемся загрузить через API
+        if (useApi) {
+            try {
+                const apiUrl = `${API_BASE_URL}/api/rating/all`;
+                const response = await fetch(apiUrl + '?t=' + Date.now());
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data.success && data.ratings && data.ratings.length > 0) {
+                        // Подсчёт статистики
+                        const totalUsers = data.total;
+                        const totalPoints = data.ratings.reduce((sum, u) => sum + u.points, 0);
+                        
+                        document.getElementById('totalUsers').textContent = totalUsers;
+                        document.getElementById('totalPoints').textContent = totalPoints;
+                        document.getElementById('avgPoints').textContent = Math.round(totalPoints / totalUsers);
+                        
+                        displayRatingTable(data.ratings);
+                        apiStatusDiv.innerHTML = '<span class="status-badge status-online">● API онлайн</span>';
+                        
+                        const updateTime = new Date().toLocaleString();
+                        const updateElem = document.getElementById('lastUpdate');
+                        if (updateElem) updateElem.innerHTML = `<small>Обновлено: ${updateTime}</small>`;
+                        
+                        return;
+                    }
+                }
+                throw new Error('API не ответил');
+            } catch (apiError) {
+                console.warn('API недоступен, загружаем из GitHub:', apiError);
+                apiStatusDiv.innerHTML = '<span class="status-badge status-offline">● API офлайн (данные из кэша)</span>';
+                // Падаем на GitHub
+            }
+        }
+        
+        // Резервная загрузка из GitHub
         try {
-            const response = await fetch(RATING_JSON_URL + '?t=' + Date.now());
+            const response = await fetch(GITHUB_JSON_URL + '?t=' + Date.now());
             
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}`);
@@ -335,7 +398,6 @@
     }
 
     function displayRatingTable(users) {
-        // Таблица: убраны колонки Уровень, Проекты, Инвестиции
         let html = `
             <table>
                 <thead>
@@ -348,26 +410,27 @@
                 <tbody>
         `;
         
-        users.forEach(user => {
+        users.forEach((user, index) => {
+            const position = user.position || index + 1;
             let medal = '';
             let medalClass = '';
             
-            if (user.position === 1) {
+            if (position === 1) {
                 medal = '🥇';
                 medalClass = 'gold';
-            } else if (user.position === 2) {
+            } else if (position === 2) {
                 medal = '🥈';
                 medalClass = 'silver';
-            } else if (user.position === 3) {
+            } else if (position === 3) {
                 medal = '🥉';
                 medalClass = 'bronze';
             }
             
-            const name = user.name || `@${user.username}`;
+            const name = user.name || user.first_name || `@${user.username || 'user_' + user.user_id}`;
             
             html += `
                 <tr>
-                    <td class="position ${medalClass}">${medal || user.position}</td>
+                    <td class="position ${medalClass}">${medal || position}</td>
                     <td><strong>${escapeHtml(name)}</strong></td>
                     <td><strong>${user.points}</strong></td>
                 </tr>
