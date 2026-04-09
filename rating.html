@@ -438,10 +438,7 @@ function displayRatingTable(users) {
         if (points > 0) pointsColor = '#4caf50'; // зеленый
         else if (points < 0) pointsColor = '#f44336'; // красный
         
-        // Доп. данные из API (уровень, репутация)
-        const level = user.level || '—';
-        const reputation = user.reputation !== undefined ? user.reputation.toFixed(1) : '0.0';
-        
+       
         html += `
             <tr>
                 <td class="position ${medalClass}">${medal || position}</td>
