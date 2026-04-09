@@ -310,8 +310,8 @@
 
 <script>
     // ============ НАСТРОЙКИ ============
-    // API endpoint бота (замени на реальный URL после деплоя)
- const API_BASE_URL = 'https://endearing-happiness-production-cc6a.up.railway.app'; // ЗАМЕНИ НА РЕАЛЬНЫЙ URL
+    // API endpoint бота
+    const API_BASE_URL = 'https://endearing-happiness-production-cc6a.up.railway.app';
     // Резервный вариант - загрузка из GitHub (если API недоступен)
     const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/poverzhukilya-ops/telegram-verification-bot/main/data/rating.json';
     
@@ -397,66 +397,61 @@
         }
     }
 
-// Замените функцию displayRatingTable в rating.html на эту
-function displayRatingTable(users) {
-    let html = `
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Участник</th>
-                    <th>Очки</th>
-                    <th>Уровень</th>
-                    <th>Репутация</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-    
-    users.forEach((user, index) => {
-        const position = user.position || index + 1;
-        let medal = '';
-        let medalClass = '';
-        
-        if (position === 1) {
-            medal = '🥇';
-            medalClass = 'gold';
-        } else if (position === 2) {
-            medal = '🥈';
-            medalClass = 'silver';
-        } else if (position === 3) {
-            medal = '🥉';
-            medalClass = 'bronze';
-        }
-        
-        // Определяем имя пользователя
-        const name = user.name || user.first_name || `@${user.username || 'user_' + user.user_id}`;
-        
-        // === НОВОЕ: Логика цветового отображения очков (ТЗ) ===
-        const points = user.points || 0;
-        let pointsColor = '#ffffff'; // белый по умолчанию (0)
-        if (points > 0) pointsColor = '#4caf50'; // зеленый
-        else if (points < 0) pointsColor = '#f44336'; // красный
-        
-       
-        html += `
-            <tr>
-                <td class="position ${medalClass}">${medal || position}</td>
-                <td><strong>${escapeHtml(name)}</strong></td>
-                <td style="color: ${pointsColor}; font-weight: bold;">${points > 0 ? '+' : ''}${points}</td>
-                <td>${escapeHtml(level)}</td>
-                <td>${reputation}</td>
-            </tr>
+    // Функция отображения таблицы (только с колонками #, Участник, Очки)
+    function displayRatingTable(users) {
+        let html = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Участник</th>
+                        <th>Очки</th>
+                    </tr>
+                </thead>
+                <tbody>
         `;
-    });
-    
-    html += `
-            </tbody>
-        </table>
-    `;
-    
-    document.getElementById('ratingTable').innerHTML = html;
-}
+        
+        users.forEach((user, index) => {
+            const position = user.position || index + 1;
+            let medal = '';
+            let medalClass = '';
+            
+            if (position === 1) {
+                medal = '🥇';
+                medalClass = 'gold';
+            } else if (position === 2) {
+                medal = '🥈';
+                medalClass = 'silver';
+            } else if (position === 3) {
+                medal = '🥉';
+                medalClass = 'bronze';
+            }
+            
+            // Определяем имя пользователя
+            const name = user.name || user.first_name || `@${user.username || 'user_' + user.user_id}`;
+            
+            // Логика цветового отображения очков
+            const points = user.points || 0;
+            let pointsColor = '#ffffff'; // белый по умолчанию (0)
+            if (points > 0) pointsColor = '#4caf50'; // зеленый
+            else if (points < 0) pointsColor = '#f44336'; // красный
+            
+            html += `
+                <tr>
+                    <td class="position ${medalClass}">${medal || position}</td>
+                    <td><strong>${escapeHtml(name)}</strong></td>
+                    <td style="color: ${pointsColor}; font-weight: bold;">${points > 0 ? '+' : ''}${points}</td>
+                </tr>
+            `;
+        });
+        
+        html += `
+                </tbody>
+            </table>
+        `;
+        
+        document.getElementById('ratingTable').innerHTML = html;
+    }
 
     function escapeHtml(text) {
         const div = document.createElement('div');
