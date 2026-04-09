@@ -212,7 +212,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Кнопка "Попробовать снова" без вращения */
+        /* Кнопка "Попробовать снова" */
         .retry-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
@@ -310,13 +310,11 @@
 
 <script>
     // ============ НАСТРОЙКИ ============
-    // API endpoint бота
     const API_BASE_URL = 'https://endearing-happiness-production-cc6a.up.railway.app';
-    // Резервный вариант - загрузка из GitHub (если API недоступен)
     const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/poverzhukilya-ops/telegram-verification-bot/main/data/rating.json';
     
-    let useApi = true; // Пытаемся использовать API сначала
-    
+    let useApi = true;
+
     async function loadRating() {
         const tableContainer = document.getElementById('ratingTable');
         const apiStatusDiv = document.getElementById('apiStatus');
@@ -331,13 +329,12 @@
                     const data = await response.json();
                     
                     if (data.success && data.ratings && data.ratings.length > 0) {
-                        // Подсчёт статистики
                         const totalUsers = data.total;
-                        const totalPoints = data.ratings.reduce((sum, u) => sum + u.points, 0);
+                        const totalPoints = data.ratings.reduce((sum, u) => sum + (u.points || 0), 0);
                         
                         document.getElementById('totalUsers').textContent = totalUsers;
                         document.getElementById('totalPoints').textContent = totalPoints;
-                        document.getElementById('avgPoints').textContent = Math.round(totalPoints / totalUsers);
+                        document.getElementById('avgPoints').textContent = totalUsers > 0 ? Math.round(totalPoints / totalUsers) : 0;
                         
                         displayRatingTable(data.ratings);
                         apiStatusDiv.innerHTML = '<span class="status-badge status-online">● API онлайн</span>';
@@ -353,7 +350,6 @@
             } catch (apiError) {
                 console.warn('API недоступен, загружаем из GitHub:', apiError);
                 apiStatusDiv.innerHTML = '<span class="status-badge status-offline">● API офлайн (данные из кэша)</span>';
-                // Падаем на GitHub
             }
         }
         
@@ -369,11 +365,11 @@
             
             if (data.success && data.data && data.data.length > 0) {
                 const totalUsers = data.total || data.data.length;
-                const totalPoints = data.data.reduce((sum, u) => sum + u.points, 0);
+                const totalPoints = data.data.reduce((sum, u) => sum + (u.points || 0), 0);
                 
                 document.getElementById('totalUsers').textContent = totalUsers;
                 document.getElementById('totalPoints').textContent = totalPoints;
-                document.getElementById('avgPoints').textContent = Math.round(totalPoints / totalUsers);
+                document.getElementById('avgPoints').textContent = totalUsers > 0 ? Math.round(totalPoints / totalUsers) : 0;
                 
                 displayRatingTable(data.data);
                 
@@ -390,14 +386,14 @@
             console.error('Ошибка:', error);
             tableContainer.innerHTML = `
                 <div class="error">
-                    ❌ Не удалось загрузить рейтинг: ${error.message}<br>
+                    ❌ Не удалось загрузить рейтинг<br>
+                    <small style="opacity: 0.7;">${error.message}</small><br>
                     <button class="retry-btn" onclick="loadRating()">🔄 Попробовать снова</button>
                 </div>
             `;
         }
     }
 
-    // Функция отображения таблицы (только с колонками #, Участник, Очки)
     function displayRatingTable(users) {
         let html = `
             <table>
@@ -428,13 +424,22 @@
             }
             
             // Определяем имя пользователя
-            const name = user.name || user.first_name || `@${user.username || 'user_' + user.user_id}`;
+            let name = 'Участник';
+            if (user.name) {
+                name = user.name;
+            } else if (user.first_name) {
+                name = user.first_name;
+                if (user.last_name) name += ' ' + user.last_name;
+            } else if (user.username) {
+                name = '@' + user.username;
+            } else if (user.user_id) {
+                name = 'user_' + user.user_id;
+            }
             
-            // Логика цветового отображения очков
             const points = user.points || 0;
-            let pointsColor = '#ffffff'; // белый по умолчанию (0)
-            if (points > 0) pointsColor = '#4caf50'; // зеленый
-            else if (points < 0) pointsColor = '#f44336'; // красный
+            let pointsColor = '#ffffff';
+            if (points > 0) pointsColor = '#4caf50';
+            else if (points < 0) pointsColor = '#f44336';
             
             html += `
                 <tr>
@@ -454,8 +459,9 @@
     }
 
     function escapeHtml(text) {
+        if (!text) return '';
         const div = document.createElement('div');
-        div.textContent = text;
+        div.textContent = String(text);
         return div.innerHTML;
     }
 
