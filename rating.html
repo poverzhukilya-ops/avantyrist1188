@@ -397,53 +397,69 @@
         }
     }
 
-    function displayRatingTable(users) {
-        let html = `
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Участник</th>
-                        <th>Очки</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
-        
-        users.forEach((user, index) => {
-            const position = user.position || index + 1;
-            let medal = '';
-            let medalClass = '';
-            
-            if (position === 1) {
-                medal = '🥇';
-                medalClass = 'gold';
-            } else if (position === 2) {
-                medal = '🥈';
-                medalClass = 'silver';
-            } else if (position === 3) {
-                medal = '🥉';
-                medalClass = 'bronze';
-            }
-            
-            const name = user.name || user.first_name || `@${user.username || 'user_' + user.user_id}`;
-            
-            html += `
+// Замените функцию displayRatingTable в rating.html на эту
+function displayRatingTable(users) {
+    let html = `
+        <table>
+            <thead>
                 <tr>
-                    <td class="position ${medalClass}">${medal || position}</td>
-                    <td><strong>${escapeHtml(name)}</strong></td>
-                    <td><strong>${user.points}</strong></td>
+                    <th>#</th>
+                    <th>Участник</th>
+                    <th>Очки</th>
+                    <th>Уровень</th>
+                    <th>Репутация</th>
                 </tr>
-            `;
-        });
+            </thead>
+            <tbody>
+    `;
+    
+    users.forEach((user, index) => {
+        const position = user.position || index + 1;
+        let medal = '';
+        let medalClass = '';
+        
+        if (position === 1) {
+            medal = '🥇';
+            medalClass = 'gold';
+        } else if (position === 2) {
+            medal = '🥈';
+            medalClass = 'silver';
+        } else if (position === 3) {
+            medal = '🥉';
+            medalClass = 'bronze';
+        }
+        
+        // Определяем имя пользователя
+        const name = user.name || user.first_name || `@${user.username || 'user_' + user.user_id}`;
+        
+        // === НОВОЕ: Логика цветового отображения очков (ТЗ) ===
+        const points = user.points || 0;
+        let pointsColor = '#ffffff'; // белый по умолчанию (0)
+        if (points > 0) pointsColor = '#4caf50'; // зеленый
+        else if (points < 0) pointsColor = '#f44336'; // красный
+        
+        // Доп. данные из API (уровень, репутация)
+        const level = user.level || '—';
+        const reputation = user.reputation !== undefined ? user.reputation.toFixed(1) : '0.0';
         
         html += `
-                </tbody>
-            </table>
+            <tr>
+                <td class="position ${medalClass}">${medal || position}</td>
+                <td><strong>${escapeHtml(name)}</strong></td>
+                <td style="color: ${pointsColor}; font-weight: bold;">${points > 0 ? '+' : ''}${points}</td>
+                <td>${escapeHtml(level)}</td>
+                <td>${reputation}</td>
+            </tr>
         `;
-        
-        document.getElementById('ratingTable').innerHTML = html;
-    }
+    });
+    
+    html += `
+            </tbody>
+        </table>
+    `;
+    
+    document.getElementById('ratingTable').innerHTML = html;
+}
 
     function escapeHtml(text) {
         const div = document.createElement('div');
