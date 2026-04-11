@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
     <title>Рейтинг участников | Avantyurist</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -13,14 +13,14 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
             min-height: 100vh;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -29,21 +29,25 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            color: white;
+            -webkit-backdrop-filter: blur(10px);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            padding: 0.7rem 1.2rem;
+            padding: 0.7rem 1.4rem;
             border-radius: 40px;
             font-weight: 500;
+            font-size: 0.95rem;
             margin-bottom: 2rem;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: fit-content;
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-4px);
+            color: white;
         }
 
         /* Заголовок */
@@ -53,225 +57,381 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 8vw, 3rem);
             font-weight: 800;
             color: white;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .header h1 span {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .header p {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 1rem;
+            font-weight: 400;
         }
 
         /* Карточки статистики */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
             margin-bottom: 2rem;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 1.5rem;
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.25rem 0.5rem;
             text-align: center;
             color: white;
-            transition: transform 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.2s, background 0.2s;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
         }
 
         .stat-value {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
             font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.8;
+            font-size: 0.7rem;
+            opacity: 0.6;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 0.5rem;
+            letter-spacing: 1.5px;
+            margin-top: 0.3rem;
+            font-weight: 500;
         }
 
         /* Таблица рейтинга */
         .rating-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 28px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
         }
 
         .rating-header {
             padding: 1.2rem 1.5rem;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .rating-header h2 {
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .refresh-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
             cursor: pointer;
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
-            transition: background 0.3s;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .refresh-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .table-wrapper {
             overflow-x: auto;
-            padding: 0 0.5rem 0.5rem 0.5rem;
+            padding: 0.25rem;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 350px;
         }
 
         th {
             text-align: left;
-            padding: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 600;
-            font-size: 0.8rem;
+            padding: 1rem 1rem 0.8rem 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         td {
             padding: 1rem;
             color: white;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.95rem;
         }
 
-        tr:hover {
-            background: rgba(255, 255, 255, 0.05);
+        tr:last-child td {
+            border-bottom: none;
         }
 
-        /* Медали */
-        .position {
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Позиция */
+        .position-cell {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            width: 60px;
         }
 
         .gold {
             color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
 
         .silver {
             color: #c0c0c0;
+            text-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
         }
 
         .bronze {
             color: #cd7f32;
+            text-shadow: 0 0 10px rgba(205, 127, 50, 0.3);
+        }
+
+        .top-player {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+        }
+
+        /* Имя участника */
+        .user-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        /* Очки */
+        .points-cell {
+            font-weight: 700;
+            font-size: 1rem;
+            text-align: right;
+            padding-right: 1.5rem;
+        }
+
+        .points-positive {
+            color: #4ade80;
+            text-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
+        }
+
+        .points-negative {
+            color: #f87171;
+            text-shadow: 0 0 8px rgba(248, 113, 113, 0.3);
+        }
+
+        .points-zero {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* Загрузка и ошибки */
         .loading, .error, .empty {
             text-align: center;
-            padding: 3rem;
+            padding: 4rem 2rem;
             color: white;
         }
 
         .spinner {
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
+            width: 44px;
+            height: 44px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #667eea;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Кнопка "Попробовать снова" */
         .retry-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
             cursor: pointer;
             font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            margin-top: 1rem;
-            transition: background 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            transition: all 0.2s;
         }
 
         .retry-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Адаптив */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            
-            th, td {
-                padding: 0.7rem;
-                font-size: 0.8rem;
-            }
-            
-            .stat-value {
-                font-size: 1.5rem;
-            }
+        /* Статус API */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
         }
 
         .status-badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
             font-size: 0.7rem;
-            font-weight: 600;
-            margin-left: 0.5rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .status-online {
-            background: rgba(76, 175, 80, 0.3);
-            color: #4caf50;
+            background: rgba(74, 222, 128, 0.12);
+            color: #4ade80;
         }
 
         .status-offline {
-            background: rgba(244, 67, 54, 0.3);
-            color: #f44336;
+            background: rgba(248, 113, 113, 0.12);
+            color: #f87171;
         }
+
+        .update-time {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.7rem;
+        }
+
+        /* Адаптив */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.75rem;
+            }
+
+            .stats-grid {
+                gap: 0.6rem;
+            }
+
+            .stat-card {
+                padding: 1rem 0.25rem;
+                border-radius: 16px;
+            }
+
+            .stat-label {
+                font-size: 0.6rem;
+            }
+
+            th, td {
+                padding: 0.8rem 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .user-avatar {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+
+            .rating-header {
+                padding: 1rem 1.2rem;
+            }
+
+            .rating-header h2 {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Анимация появления */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rating-container {
+            animation: fadeIn 0.5s ease;
+        }
+
+        .stat-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.05s; }
+        .stat-card:nth-child(2) { animation-delay: 0.1s; }
+        .stat-card:nth-child(3) { animation-delay: 0.15s; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← На главную</a>
+        <a href="index.html" class="back-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            На главную
+        </a>
 
         <div class="header">
-            <h1>🏆 Рейтинг участников</h1>
+            <h1>
+                <span>🏆</span> Рейтинг <span>участников</span>
+            </h1>
             <p>Avantyurist — сообщество инициативных людей</p>
         </div>
 
@@ -290,21 +450,31 @@
                 <div class="stat-label">Средний рейтинг</div>
             </div>
         </div>
-        <div id="lastUpdate" style="text-align: center; color: rgba(255,255,255,0.6); font-size: 0.7rem; margin-top: 1rem;"></div>
-        <div id="apiStatus" style="text-align: center; margin-top: 0.5rem;"></div>
 
         <!-- Таблица рейтинга -->
         <div class="rating-container">
             <div class="rating-header">
-                <h2>📊 Таблица лидеров</h2>
-                <button class="refresh-btn" onclick="loadRating()">🔄 Обновить</button>
+                <h2>
+                    <span>📊</span> Таблица лидеров
+                </h2>
+                <button class="refresh-btn" onclick="loadRating()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                    </svg>
+                    Обновить
+                </button>
             </div>
             <div class="table-wrapper" id="ratingTable">
                 <div class="loading">
                     <div class="spinner"></div>
-                    <p style="margin-top: 1rem;">Загрузка рейтинга...</p>
+                    <p style="margin-top: 1.2rem; opacity: 0.7;">Загрузка рейтинга...</p>
                 </div>
             </div>
+        </div>
+
+        <div class="status-bar">
+            <span id="apiStatus" class="status-badge">● Подключение...</span>
+            <span id="lastUpdate" class="update-time"></span>
         </div>
     </div>
 
@@ -319,7 +489,6 @@
         const tableContainer = document.getElementById('ratingTable');
         const apiStatusDiv = document.getElementById('apiStatus');
         
-        // Пытаемся загрузить через API
         if (useApi) {
             try {
                 const apiUrl = `${API_BASE_URL}/api/rating/all`;
@@ -337,29 +506,37 @@
                         document.getElementById('avgPoints').textContent = totalUsers > 0 ? Math.round(totalPoints / totalUsers) : 0;
                         
                         displayRatingTable(data.ratings);
-                        apiStatusDiv.innerHTML = '<span class="status-badge status-online">● API онлайн</span>';
+                        apiStatusDiv.innerHTML = '<span style="display:flex;align-items:center;gap:6px;"><span style="color:#4ade80;">●</span> API онлайн</span>';
+                        apiStatusDiv.className = 'status-badge status-online';
                         
-                        const updateTime = new Date().toLocaleString();
-                        const updateElem = document.getElementById('lastUpdate');
-                        if (updateElem) updateElem.innerHTML = `<small>Обновлено: ${updateTime}</small>`;
+                        const updateTime = new Date().toLocaleString('ru-RU', { 
+                            day: '2-digit', month: '2-digit', year: 'numeric',
+                            hour: '2-digit', minute: '2-digit'
+                        });
+                        document.getElementById('lastUpdate').textContent = `Обновлено: ${updateTime}`;
                         
                         return;
                     }
                 }
                 throw new Error('API не ответил');
             } catch (apiError) {
-                console.warn('API недоступен, загружаем из GitHub:', apiError);
-                apiStatusDiv.innerHTML = '<span class="status-badge status-offline">● API офлайн (данные из кэша)</span>';
+                console.warn('API недоступен:', apiError);
+                apiStatusDiv.innerHTML = '<span style="display:flex;align-items:center;gap:6px;"><span style="color:#f87171;">●</span> API офлайн</span>';
+                apiStatusDiv.className = 'status-badge status-offline';
+                await loadFromGithub();
             }
+        } else {
+            await loadFromGithub();
         }
+    }
+
+    async function loadFromGithub() {
+        const tableContainer = document.getElementById('ratingTable');
         
-        // Резервная загрузка из GitHub
         try {
             const response = await fetch(GITHUB_JSON_URL + '?t=' + Date.now());
             
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             
             const data = await response.json();
             
@@ -374,20 +551,23 @@
                 displayRatingTable(data.data);
                 
                 if (data.updated_at) {
-                    const updateTime = new Date(data.updated_at).toLocaleString();
-                    const updateElem = document.getElementById('lastUpdate');
-                    if (updateElem) updateElem.innerHTML = `<small>Обновлено: ${updateTime}</small>`;
+                    const updateTime = new Date(data.updated_at).toLocaleString('ru-RU', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                    });
+                    document.getElementById('lastUpdate').textContent = `Обновлено: ${updateTime}`;
                 }
             } else {
-                tableContainer.innerHTML = '<div class="empty">📭 Пока нет участников в рейтинге</div>';
+                tableContainer.innerHTML = '<div class="empty"><span style="font-size:2.5rem;display:block;margin-bottom:1rem;">📭</span>Пока нет участников в рейтинге</div>';
             }
             
         } catch (error) {
             console.error('Ошибка:', error);
             tableContainer.innerHTML = `
                 <div class="error">
-                    ❌ Не удалось загрузить рейтинг<br>
-                    <small style="opacity: 0.7;">${error.message}</small><br>
+                    <span style="font-size:2rem;display:block;margin-bottom:0.5rem;">❌</span>
+                    Не удалось загрузить рейтинг<br>
+                    <small style="opacity:0.6;font-size:0.8rem;">${error.message}</small><br>
                     <button class="retry-btn" onclick="loadRating()">🔄 Попробовать снова</button>
                 </div>
             `;
@@ -401,7 +581,7 @@
                     <tr>
                         <th>#</th>
                         <th>Участник</th>
-                        <th>Очки</th>
+                        <th style="text-align:right;">Очки</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -411,10 +591,12 @@
             const position = user.position || index + 1;
             let medal = '';
             let medalClass = '';
+            let rowClass = '';
             
             if (position === 1) {
                 medal = '🥇';
                 medalClass = 'gold';
+                rowClass = 'top-player';
             } else if (position === 2) {
                 medal = '🥈';
                 medalClass = 'silver';
@@ -423,29 +605,45 @@
                 medalClass = 'bronze';
             }
             
-            // Определяем имя пользователя
             let name = 'Участник';
+            let avatarLetter = '?';
+            
             if (user.name) {
                 name = user.name;
+                avatarLetter = name.charAt(0).toUpperCase();
             } else if (user.first_name) {
                 name = user.first_name;
                 if (user.last_name) name += ' ' + user.last_name;
+                avatarLetter = user.first_name.charAt(0).toUpperCase();
             } else if (user.username) {
                 name = '@' + user.username;
-            } else if (user.user_id) {
-                name = 'user_' + user.user_id;
+                avatarLetter = user.username.charAt(0).toUpperCase();
             }
             
+            // Ограничиваем длину имени
+            if (name.length > 20) name = name.substring(0, 18) + '...';
+            
             const points = user.points || 0;
-            let pointsColor = '#ffffff';
-            if (points > 0) pointsColor = '#4caf50';
-            else if (points < 0) pointsColor = '#f44336';
+            let pointsClass = 'points-zero';
+            let pointsSign = '';
+            
+            if (points > 0) {
+                pointsClass = 'points-positive';
+                pointsSign = '+';
+            } else if (points < 0) {
+                pointsClass = 'points-negative';
+            }
             
             html += `
-                <tr>
-                    <td class="position ${medalClass}">${medal || position}</td>
-                    <td><strong>${escapeHtml(name)}</strong></td>
-                    <td style="color: ${pointsColor}; font-weight: bold;">${points > 0 ? '+' : ''}${points}</td>
+                <tr class="${rowClass}">
+                    <td class="position-cell ${medalClass}">${medal || position}</td>
+                    <td>
+                        <div class="user-name">
+                            <div class="user-avatar">${escapeHtml(avatarLetter)}</div>
+                            <span>${escapeHtml(name)}</span>
+                        </div>
+                    </td>
+                    <td class="points-cell ${pointsClass}">${pointsSign}${points}</td>
                 </tr>
             `;
         });
