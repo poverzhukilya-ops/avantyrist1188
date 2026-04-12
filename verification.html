@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
     <title>Верификация участника | Avantyurist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,69 +13,91 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f4f8fe;
-            color: #102a3c;
-            line-height: 1.45;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            line-height: 1.5;
+            min-height: 100vh;
         }
 
         .top-nav {
-            background: white;
-            border-bottom: 1px solid #e2edf2;
-            padding: 0.8rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.8rem 1.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
-            background: rgba(255,255,255,0.95);
         }
+
         .nav-inner {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
+
         .back-link {
             text-decoration: none;
-            color: #1f6392;
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 0.9rem;
-            transition: 0.2s;
+            transition: all 0.2s ease;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .back-link:hover {
-            color: #0f4c6f;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
             transform: translateX(-3px);
         }
+
         .nav-title {
             font-weight: 600;
-            color: #2c5a7a;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 950px;
             margin: 0 auto;
-            padding: 1.8rem 1.8rem 3rem;
+            padding: 2rem 1.5rem 3rem;
         }
 
-        /* Основная карточка с содержимым */
         .verification-main-card {
-            background: white;
-            border-radius: 32px;
-            border: 1px solid #e6edf4;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.5s ease;
         }
 
-        /* Блок с ботом (иконка + ник) — вверху */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Блок с ботом */
         .bot-hero {
-            background: linear-gradient(135deg, #f8fbfe 0%, #ffffff 100%);
-            padding: 1.6rem 2rem;
-            border-bottom: 1px solid #eef2f8;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.04) 100%);
+            padding: 1.8rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -84,17 +106,17 @@
         }
 
         .bot-avatar-circle {
-            width: 72px;
-            height: 72px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-            border: 2px solid white;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
             flex-shrink: 0;
-            background: #e2edfb;
+            background: linear-gradient(135deg, #667eea, #764ba2);
         }
 
         .bot-avatar-circle img {
@@ -107,50 +129,55 @@
         .bot-info {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
         }
 
         .bot-nickname {
             font-weight: 800;
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, #1a4a6e, #1f6797);
-            background-clip: text;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.5px;
         }
 
         .bot-badge {
             font-size: 0.7rem;
-            background: #eef2fa;
-            color: #2c7fb8;
-            padding: 0.2rem 0.8rem;
+            background: rgba(102, 126, 234, 0.15);
+            color: #a5b4fc;
+            padding: 0.25rem 1rem;
             border-radius: 40px;
             width: fit-content;
             font-weight: 500;
+            border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
         /* Внутренний контент */
         .content-inner {
-            padding: 2rem 2rem 2rem;
+            padding: 2rem 2rem 2.5rem;
         }
 
         .page-title {
-            font-size: 1.8rem;
+            font-size: clamp(1.6rem, 6vw, 2rem);
             font-weight: 800;
-            background: linear-gradient(145deg, #1a4a6e, #1f6797);
-            background-clip: text;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .subhead {
-            color: #2c5575;
+            color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
-            margin-bottom: 1.8rem;
-            border-left: 3px solid #3182ce;
-            padding-left: 1rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid #667eea;
+            padding-left: 1.2rem;
         }
 
         /* Шаги верификации */
@@ -161,11 +188,11 @@
         .section-title {
             font-weight: 700;
             font-size: 1.2rem;
-            color: #163a50;
-            margin-bottom: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .step-item {
@@ -176,17 +203,18 @@
         }
 
         .step-number {
-            width: 36px;
-            height: 36px;
-            background: #e2edfb;
+            width: 38px;
+            height: 38px;
+            background: rgba(102, 126, 234, 0.12);
             border-radius: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
             font-size: 1rem;
-            color: #1f6392;
+            color: #a5b4fc;
             flex-shrink: 0;
+            border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
         .step-text {
@@ -196,33 +224,34 @@
         .step-text h4 {
             font-weight: 700;
             font-size: 1rem;
-            color: #1a4a6e;
-            margin-bottom: 4px;
+            color: #e2e8f0;
+            margin-bottom: 5px;
         }
 
         .step-text p {
-            color: #2c5575;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.85rem;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        /* Блок с ограничениями (3 попытки) */
+        /* Блок с ограничениями */
         .attempts-block {
-            background: #fef7e8;
+            background: rgba(245, 158, 11, 0.05);
             border-radius: 24px;
-            padding: 1.2rem 1.4rem;
-            margin: 1.8rem 0 1.5rem;
-            border-left: 4px solid #f5a623;
+            padding: 1.3rem 1.5rem;
+            margin: 2rem 0 1.8rem;
+            border-left: 4px solid #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.1);
         }
 
         .attempts-header {
             font-weight: 800;
             font-size: 1rem;
-            color: #b45f1b;
+            color: #fbbf24;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 0.8rem;
+            gap: 10px;
+            margin-bottom: 1rem;
         }
 
         .attempt-list {
@@ -233,46 +262,46 @@
 
         .attempt-list li {
             font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: baseline;
-            gap: 8px;
-            color: #4a3b1c;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .attempt-list {
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 0;  /* ← убираем нижний отступ */
-}
+        .attempt-list li strong {
+            color: #fcd34d;
+            min-width: 160px;
+        }
 
-.attempt-warning {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #b45f1b;
-    background: #fff2df;
-    display: inline-block;
-    padding: 0.2rem 1rem;
-    border-radius: 40px;
-    margin-top: 0;     /* ← убираем верхний отступ */
-}
+        .attempt-warning {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fbbf24;
+            background: rgba(245, 158, 11, 0.08);
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
 
         /* Блок "Зачем это нужно" */
         .why-block {
-            background: #eef4fc;
+            background: rgba(102, 126, 234, 0.05);
             border-radius: 24px;
-            padding: 1.2rem 1.4rem;
-            margin: 1.5rem 0;
+            padding: 1.3rem 1.5rem;
+            margin: 1.8rem 0;
+            border: 1px solid rgba(102, 126, 234, 0.1);
         }
 
         .why-header {
             font-weight: 800;
             font-size: 1rem;
-            color: #1f6392;
+            color: #a5b4fc;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 0.8rem;
+            gap: 10px;
+            margin-bottom: 1rem;
         }
 
         .why-list {
@@ -282,70 +311,97 @@
 
         .why-list li {
             font-size: 0.85rem;
-            margin-bottom: 0.6rem;
-            padding-left: 1.4rem;
+            margin-bottom: 0.7rem;
+            padding-left: 1.6rem;
             position: relative;
-            color: #1f3e54;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .why-list li::before {
             content: "•";
-            color: #2c7fb8;
+            color: #667eea;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             position: absolute;
-            left: 0;
+            left: 0.2rem;
             top: -2px;
         }
 
-        /* Футер с цитатой */
+        /* Футер */
         .footer-quote {
             text-align: center;
             font-weight: 600;
-            font-size: 0.9rem;
-            color: #2c7fb8;
-            margin-top: 1.6rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2edf2;
+            font-size: 0.95rem;
+            color: #a5b4fc;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .small-note {
             font-size: 0.7rem;
-            color: #7f8fa4;
+            color: rgba(255, 255, 255, 0.35);
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
         }
 
+        /* Адаптив */
         @media (max-width: 640px) {
             .container {
-                padding: 1rem;
+                padding: 1rem 0.8rem 2rem;
             }
+
             .bot-hero {
-                padding: 1.2rem;
+                padding: 1.3rem 1.2rem;
             }
+
             .bot-avatar-circle {
-                width: 56px;
-                height: 56px;
+                width: 60px;
+                height: 60px;
             }
+
             .bot-nickname {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
+
             .content-inner {
-                padding: 1.2rem;
+                padding: 1.5rem 1.2rem 1.8rem;
             }
+
             .page-title {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
+
             .step-number {
-                width: 30px;
-                height: 30px;
-                font-size: 0.85rem;
-            }
-            .step-text h4 {
+                width: 34px;
+                height: 34px;
                 font-size: 0.9rem;
             }
+
+            .step-text h4 {
+                font-size: 0.95rem;
+            }
+
+            .attempt-list li {
+                flex-wrap: wrap;
+            }
+
             .attempt-list li strong {
-                min-width: 100px;
+                min-width: auto;
+            }
+
+            .attempts-block, .why-block {
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bot-hero {
+                gap: 1rem;
+            }
+
+            .bot-badge {
+                font-size: 0.65rem;
             }
         }
     </style>
@@ -353,17 +409,23 @@
 <body>
     <div class="top-nav">
         <div class="nav-inner">
-            <a href="javascript:history.back()" class="back-link">← Вернуться на главную</a>
-            <div class="nav-title">✅ Верификация участника</div>
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                На главную
+            </a>
+            <div class="nav-title">
+                <span>✅</span> Верификация участника
+            </div>
         </div>
     </div>
 
     <div class="container">
         <div class="verification-main-card">
-            <!-- 🔹 Верхний блок: иконка бота (круг) + никнейм, как в Телеграме -->
+            <!-- Верхний блок с ботом -->
             <div class="bot-hero">
                 <div class="bot-avatar-circle">
-                    <!-- Картинка бота — файл penguin.jpg лежит в той же папке -->
                     <img src="penguin.jpg" alt="@AvantyuristBot">
                 </div>
                 <div class="bot-info">
@@ -378,16 +440,16 @@
 
             <div class="content-inner">
                 <div class="page-title">
-                    ✅ Верификация участника
+                    <span>✅</span> Верификация участника
                 </div>
                 <div class="subhead">
                     Чтобы попасть в сообщество, каждый участник проходит простой и понятный процесс через Telegram-бота.
                 </div>
 
-                <!-- 📌 Как это работает (4 шага) -->
+                <!-- Как это работает -->
                 <div class="steps-section">
                     <div class="section-title">
-                        📌 Как это работает
+                        <span>📌</span> Как это работает
                     </div>
                     
                     <div class="step-item">
@@ -423,7 +485,7 @@
                     </div>
                 </div>
 
-                <!-- 🔄 Ограничение на повторный вход (3 попытки) -->
+                <!-- Ограничение на повторный вход -->
                 <div class="attempts-block">
                     <div class="attempts-header">
                         🔄 Ограничение на повторный вход
@@ -438,7 +500,7 @@
                     </div>
                 </div>
 
-                <!-- 🛡️ Зачем это нужно -->
+                <!-- Зачем это нужно -->
                 <div class="why-block">
                     <div class="why-header">
                         🛡️ Зачем это нужно
@@ -450,7 +512,6 @@
                     </ul>
                 </div>
 
-                <!-- Цитата про Avantyurist -->
                 <div class="footer-quote">
                     Avantyurist — пространство для своих, где всё по-честному.
                 </div>
