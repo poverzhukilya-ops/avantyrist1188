@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Совместные проекты | Полный регламент</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
+    <title>Совместные проекты | Avantyurist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,182 +13,309 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f4f8fe;
-            color: #102a3c;
-            line-height: 1.45;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            line-height: 1.5;
+            min-height: 100vh;
         }
 
-        /* навигация для возврата на главную */
         .top-nav {
-            background: white;
-            border-bottom: 1px solid #e2edf2;
-            padding: 0.8rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.8rem 1.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
-            background: rgba(255,255,255,0.95);
         }
+
         .nav-inner {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
+
         .back-link {
             text-decoration: none;
-            color: #1f6392;
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 0.9rem;
-            transition: 0.2s;
+            transition: all 0.2s ease;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .back-link:hover {
-            color: #0f4c6f;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
             transform: translateX(-3px);
         }
+
         .nav-title {
             font-weight: 600;
-            color: #2c5a7a;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 950px;
             margin: 0 auto;
-            padding: 1.8rem 1.8rem 3rem;
+            padding: 2rem 1.5rem 3rem;
         }
 
         .page-header {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             text-align: center;
         }
+
         .page-header h1 {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 8vw, 2.5rem);
             font-weight: 800;
-            background: linear-gradient(145deg, #1a4a6e, #1f6797);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
             letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #6ee7b7 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
+
         .page-header .lead {
-            color: #2c5575;
-            margin-top: 0.5rem;
-            border-left: 4px solid #2c7fb8;
-            padding-left: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0.8rem auto 0;
+            border-left: 3px solid #34d399;
+            padding-left: 1rem;
         }
 
         .rule-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 28px;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: transform 0.2s, border-color 0.2s;
             overflow: hidden;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid #e6edf4;
-            transition: all 0.2s;
         }
+
+        .rule-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
         .rule-header {
-            padding: 1rem 1.8rem;
-            background: #fbfeff;
-            border-bottom: 1px solid #eef2f8;
+            padding: 1.2rem 1.8rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: baseline;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
         }
+
         .rule-number {
-            background: #e2edfb;
-            color: #1c628b;
-            font-weight: 700;
-            font-size: 0.8rem;
+            background: rgba(52, 211, 153, 0.12);
+            color: #6ee7b7;
+            font-weight: 600;
+            font-size: 0.75rem;
             border-radius: 40px;
             padding: 4px 14px;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            letter-spacing: 0.3px;
         }
+
         .rule-title {
             font-weight: 700;
-            font-size: 1.35rem;
-            color: #163a50;
+            font-size: 1.3rem;
+            color: #e2e8f0;
+            letter-spacing: -0.01em;
         }
+
         .rule-content {
-            padding: 1.2rem 1.8rem 1.6rem;
+            padding: 1.4rem 1.8rem 1.8rem;
         }
+
         .rule-content p {
-            margin-bottom: 0.7rem;
-            color: #1f3e54;
+            margin-bottom: 0.9rem;
+            color: rgba(255, 255, 255, 0.75);
         }
-        ul, .custom-list {
-            padding-left: 1.4rem;
-            margin: 0.7rem 0;
+
+        ul {
+            padding-left: 1.6rem;
+            margin: 0.9rem 0;
+            color: rgba(255, 255, 255, 0.7);
         }
+
         li {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
+
+        li strong {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        ul ul {
+            margin: 0.4rem 0 0.4rem 1rem;
+        }
+
         .highlight-bg {
-            background: #eef6fc;
+            background: rgba(52, 211, 153, 0.06);
             border-radius: 18px;
-            padding: 0.9rem 1.2rem;
-            margin: 0.8rem 0;
-            border-left: 3px solid #3182ce;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0;
+            border-left: 3px solid #34d399;
+            color: rgba(255, 255, 255, 0.8);
         }
-        .sportant-note {
-            background: #fff7e5;
-            border-radius: 20px;
-            padding: 0.8rem 1.2rem;
-            margin: 1rem 0 0.5rem;
-            border-left: 3px solid #f2b84e;
+
+        .important-note {
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 18px;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0 0.5rem;
+            border-left: 3px solid #f59e0b;
+            color: rgba(255, 255, 255, 0.85);
         }
+
+        .important-note strong {
+            color: #fbbf24;
+        }
+
         hr {
-            margin: 0.8rem 0;
+            margin: 1.2rem 0;
             border: none;
             height: 1px;
-            background: #dee9f0;
+            background: rgba(255, 255, 255, 0.06);
         }
+
         .footnote {
-            background: #e1eff9;
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 28px;
-            padding: 1.2rem;
+            padding: 1.4rem 1.8rem;
             text-align: center;
             font-size: 0.85rem;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
+
+        .footnote strong {
+            color: #6ee7b7;
+        }
+
+        /* Адаптив */
         @media (max-width: 640px) {
+            .top-nav {
+                padding: 0.7rem 1rem;
+            }
+
+            .nav-inner {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 1.2rem 1rem 2rem;
+            }
+
+            .rule-header {
+                padding: 1rem 1.2rem;
+            }
+
             .rule-title {
                 font-size: 1.2rem;
             }
-            .container {
-                padding: 1rem 1rem 2rem;
-            }
-            .rule-header {
-                padding: 0.8rem 1.2rem;
-            }
+
             .rule-content {
-                padding: 1rem 1.2rem 1.3rem;
+                padding: 1.2rem 1.2rem 1.5rem;
             }
+
             .page-header h1 {
-                font-size: 1.7rem;
+                font-size: 1.8rem;
             }
+
+            .highlight-bg, .important-note {
+                padding: 0.9rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rule-title {
+                font-size: 1.1rem;
+            }
+
+            .rule-number {
+                font-size: 0.7rem;
+                padding: 3px 12px;
+            }
+
+            .footnote {
+                padding: 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Анимация */
+        .rule-card {
+            animation: fadeInUp 0.4s ease backwards;
+        }
+
+        .rule-card:nth-child(1) { animation-delay: 0.05s; }
+        .rule-card:nth-child(2) { animation-delay: 0.1s; }
+        .rule-card:nth-child(3) { animation-delay: 0.15s; }
+        .rule-card:nth-child(4) { animation-delay: 0.2s; }
+        .rule-card:nth-child(5) { animation-delay: 0.25s; }
+        .rule-card:nth-child(6) { animation-delay: 0.3s; }
+        .rule-card:nth-child(7) { animation-delay: 0.35s; }
+        .rule-card:nth-child(8) { animation-delay: 0.4s; }
+        .rule-card:nth-child(9) { animation-delay: 0.45s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
     <div class="top-nav">
         <div class="nav-inner">
-            <a href="index.html" class="back-link">← Вернуться на главную</a>
-            <div class="nav-title">📖 Регламент сообщества</div>
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                На главную
+            </a>
+            <div class="nav-title">
+                <span>🤝</span> Совместные проекты
+            </div>
         </div>
     </div>
 
     <div class="container">
         <div class="page-header">
-            <h1>🤝 Совместные проекты</h1>
+            <h1>
+                <span>🤝</span> Совместные проекты
+            </h1>
             <div class="lead">Механика, как устроены совместные проекты.</div>
         </div>
 
@@ -252,7 +379,7 @@
         <div class="rule-card">
             <div class="rule-header">
                 <div class="rule-number">Правило 4</div>
-                <div class="rule-title">📊 Инвестирование и распределение прибыли/убытков</div>
+                <div class="rule-title">📊 Инвестирование и распределение</div>
             </div>
             <div class="rule-content">
                 <p>Если проект требует вложений, прибыль и убытки распределяются <strong>пропорционально вкладу участников</strong>.</p>
@@ -269,7 +396,7 @@
         <div class="rule-card">
             <div class="rule-header">
                 <div class="rule-number">Правило 5</div>
-                <div class="rule-title">📋 Порядок сбора средств и учёта вклада</div>
+                <div class="rule-title">📋 Порядок сбора средств и учёта</div>
             </div>
             <div class="rule-content">
                 <p>Перед началом проекта участники совместно определяют:</p>
@@ -339,7 +466,7 @@
             </div>
         </div>
 
-        <!-- Дополнительный блок: алгоритм и решение проблем -->
+        <!-- Дополнительный блок -->
         <div class="rule-card">
             <div class="rule-header">
                 <div class="rule-number">Помощь</div>
