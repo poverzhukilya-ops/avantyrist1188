@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
     <title>Регламент сообщества | Avantyurist</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
+  <style>
         * {
             margin: 0;
             padding: 0;
@@ -38,6 +38,51 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.5);
             animation: fadeIn 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Гвоздики по углам */
+        .hero-card::before,
+        .hero-card::after,
+        .hero-card .corner-top-right,
+        .hero-card .corner-bottom-left,
+        .hero-card .corner-bottom-right {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle at 35% 35%, #d4d4d4, #888, #555);
+            border-radius: 50%;
+            box-shadow: 
+                0 3px 5px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(0,0,0,0.1) inset,
+                0 -2px 3px rgba(0,0,0,0.2) inset;
+            z-index: 2;
+        }
+
+        /* Верхний левый */
+        .hero-card::before {
+            top: 14px;
+            left: 14px;
+        }
+
+        /* Верхний правый */
+        .hero-card::after {
+            top: 14px;
+            right: 14px;
+        }
+
+        /* Нижний левый */
+        .hero-card .corner-bottom-left {
+            bottom: 14px;
+            left: 14px;
+        }
+
+        /* Нижний правый */
+        .hero-card .corner-bottom-right {
+            bottom: 14px;
+            right: 14px;
         }
 
         @keyframes fadeIn {
