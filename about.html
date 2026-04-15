@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>О группе | Avantyurist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
+    <title>О сообществе | Avantyurist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,154 +13,378 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f4f8fe;
-            color: #102a3c;
-            line-height: 1.45;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            line-height: 1.5;
+            min-height: 100vh;
         }
 
         .top-nav {
-            background: white;
-            border-bottom: 1px solid #e2edf2;
-            padding: 0.8rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.8rem 1.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
-            background: rgba(255,255,255,0.95);
         }
+
         .nav-inner {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
+
         .back-link {
             text-decoration: none;
-            color: #1f6392;
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 0.9rem;
-            transition: 0.2s;
+            transition: all 0.2s ease;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .back-link:hover {
-            color: #0f4c6f;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
             transform: translateX(-3px);
         }
+
         .nav-title {
             font-weight: 600;
-            color: #2c5a7a;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
-            padding: 2rem 1.8rem 3rem;
+            padding: 2rem 1.5rem 3rem;
         }
 
-        .page-header {
-            margin-bottom: 2rem;
+        /* Заголовок страницы */
+        .page-hero {
             text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.6s ease;
         }
-        .page-header h1 {
-            font-size: 2.2rem;
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 8vw, 2.8rem);
             font-weight: 800;
-            background: linear-gradient(145deg, #1a4a6e, #1f6797);
-            background-clip: text;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 40%, #6ee7b7 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
+            margin-bottom: 0.8rem;
         }
-        
-        .about-card {
-            background: white;
-            border-radius: 28px;
-            margin-bottom: 1.8rem;
-            overflow: hidden;
-            border: 1px solid #e6edf4;
+
+        .page-hero .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        
-        .about-header {
-            padding: 1.2rem 1.8rem;
-            background: linear-gradient(135deg, #1e4b6e, #1f6392);
-            color: white;
+
+        /* Карточки с иконками */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
-        
-        .about-header h2 {
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+            text-align: center;
+            animation: fadeInUp 0.5s ease backwards;
         }
-        
-        .about-content {
-            padding: 1.5rem 1.8rem;
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.3);
         }
-        
-        .about-content p {
+
+        .feature-icon {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            line-height: 1.5;
-            color: #2c3e50;
+            display: block;
         }
-        
-        .about-content h3 {
-            color: #1f6392;
-            margin: 1.2rem 0 0.5rem 0;
+
+        .feature-card h3 {
             font-size: 1.2rem;
-        }
-        
-        .about-content ul {
-            padding-left: 1.5rem;
-            margin: 0.8rem 0;
-        }
-        
-        .about-content li {
+            font-weight: 700;
+            color: #e2e8f0;
             margin-bottom: 0.5rem;
         }
-        
-        .highlight-box {
-            background: #eef6fc;
-            border-radius: 20px;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-left: 4px solid #3182ce;
-        }
-        
-        .image-placeholder {
-            text-align: center;
-            margin: 1.5rem 0;
-        }
-        
-        .group-photo {
-            max-width: 100%;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        
-        .footnote {
-            background: #e1eff9;
-            border-radius: 28px;
-            padding: 1.2rem;
-            text-align: center;
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.85rem;
-            margin-top: 2rem;
+            line-height: 1.5;
         }
-        
+
+        /* Основные блоки */
+        .section-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 28px;
+            margin-bottom: 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease backwards;
+        }
+
+        .section-header {
+            padding: 1.3rem 1.8rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .section-icon {
+            font-size: 1.6rem;
+        }
+
+        .section-header h2 {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #e2e8f0;
+            letter-spacing: -0.01em;
+        }
+
+        .section-content {
+            padding: 1.6rem 1.8rem;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+        }
+
+        .section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .principles-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .principle-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .principle-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .principle-text strong {
+            display: block;
+            color: #e2e8f0;
+            margin-bottom: 0.2rem;
+        }
+
+        .principle-text span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        .highlight-box {
+            background: rgba(52, 211, 153, 0.06);
+            border-radius: 18px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0 0;
+            border-left: 3px solid #34d399;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .highlight-box .emoji {
+            font-size: 1.4rem;
+        }
+
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+        }
+
+        .steps-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .step-marker {
+            width: 28px;
+            height: 28px;
+            background: rgba(102, 126, 234, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #a5b4fc;
+            flex-shrink: 0;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .audience-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .audience-icon {
+            font-size: 1.5rem;
+        }
+
+        .audience-text {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+        }
+
+        .footnote {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 28px;
+            padding: 1.4rem 1.8rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .footnote strong {
+            color: #a5b4fc;
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.15s; }
+        .feature-card:nth-child(3) { animation-delay: 0.2s; }
+        .feature-card:nth-child(4) { animation-delay: 0.25s; }
+
+        .section-card:nth-child(3) { animation-delay: 0.3s; }
+        .section-card:nth-child(4) { animation-delay: 0.35s; }
+        .section-card:nth-child(5) { animation-delay: 0.4s; }
+
+        /* Адаптив */
+        @media (max-width: 700px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .principles-list {
+                grid-template-columns: 1fr;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 640px) {
+            .top-nav {
+                padding: 0.7rem 1rem;
+            }
+
             .container {
-                padding: 1rem;
+                padding: 1.2rem 1rem 2rem;
             }
-            .page-header h1 {
-                font-size: 1.7rem;
+
+            .section-header {
+                padding: 1rem 1.2rem;
             }
-            .about-header h2 {
+
+            .section-header h2 {
                 font-size: 1.2rem;
             }
-            .about-content {
+
+            .section-content {
                 padding: 1.2rem;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .feature-card {
+                padding: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .footnote {
+                padding: 1.2rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -168,75 +392,158 @@
 <body>
     <div class="top-nav">
         <div class="nav-inner">
-            <a href="javascript:history.back()" class="back-link">← Вернуться на главную</a>
-            <div class="nav-title">📖 О сообществе</div>
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                На главную
+            </a>
+            <div class="nav-title">
+                <span>📖</span> О сообществе
+            </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="page-header">
-            <h1>📖 О группе Avantyurist</h1>
+        <div class="page-hero">
+            <h1>Avantyurist</h1>
+            <div class="subtitle">Сообщество инициативных людей для совместных проектов и инвестиций</div>
         </div>
-    
-        <div class="about-card">
-            <div class="about-header">
-                <h2>🤝 Кто мы</h2>
+
+        <!-- Ключевые ценности (сетка) -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🔍</span>
+                <h3>Прозрачность</h3>
+                <p>Все договорённости фиксируются письменно, каждый этап открыт для участников</p>
             </div>
-            <div class="about-content">
-                <p><strong>Avantyurist</strong> — это сообщество инициативных людей, объединяющих ресурсы, идеи и усилия для реализации совместных проектов. Мы верим, что вместе можно достичь большего, разделяя как возможности, так и риски.</p>
+            <div class="feature-card">
+                <span class="feature-icon">⚖️</span>
+                <h3>Справедливость</h3>
+                <p>Прибыль и убытки распределяются строго пропорционально вкладу</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📌</span>
+                <h3>Ответственность</h3>
+                <p>Каждый подтверждает свои обязательства, сроки и объём работ</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🗣️</span>
+                <h3>Открытость</h3>
+                <p>Проекты проходят публичное обсуждение и голосование</p>
+            </div>
+        </div>
+
+        <!-- Кто мы -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-icon">🤝</span>
+                <h2>Кто мы</h2>
+            </div>
+            <div class="section-content">
+                <p><strong style="color: #a5b4fc;">Avantyurist</strong> — это сообщество инициативных людей, объединяющих ресурсы, идеи и усилия для реализации совместных проектов. Мы верим, что вместе можно достичь большего, разделяя как возможности, так и риски.</p>
                 <p>Наша миссия — создавать прозрачную и справедливую среду, где каждый участник может внести свой вклад и получить пропорциональный результат.</p>
             </div>
         </div>
-        
-        <div class="about-card">
-            <div class="about-header">
-                <h2>⭐ Наши принципы</h2>
+
+        <!-- Наши принципы -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-icon">⭐</span>
+                <h2>Наши принципы</h2>
             </div>
-            <div class="about-content">
-                <ul>
-                    <li><strong>🔍 Прозрачность</strong> — все договорённости фиксируются письменно в чате, каждый этап проекта открыт для участников.</li>
-                    <li><strong>⚖️ Справедливость</strong> — прибыль и убытки распределяются строго пропорционально вкладу (деньги, вещи, аренда).</li>
-                    <li><strong>📌 Ответственность</strong> — каждый участник подтверждает свои обязательства, сроки и объём работ.</li>
-                    <li><strong>🗣️ Открытость</strong> — каждый проект проходит публичное обсуждение и голосование.</li>
-                    <li><strong>🧾 Документирование</strong> — все вклады подтверждаются чеками, скринами или рыночными оценками.</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="about-card">
-            <div class="about-header">
-                <h2>🚀 Как мы работаем</h2>
-            </div>
-            <div class="about-content">
-                <p>Любой участник может предложить проект, описав его по чёткой структуре. После обсуждения и одобрения создаётся отдельная ветка, где участники:</p>
-                <ul>
-                    <li>Распределяют роли и обязанности</li>
-                    <li>Определяют вклады (деньги, материалы, инструменты)</li>
-                    <li>Фиксируют сроки и этапы</li>
-                    <li>Согласовывают порядок распределения результата</li>
-                </ul>
-                <div class="highlight-box">
-                    💡 <strong>Главное правило:</strong> все договорённости — только письменно. Это защищает интересы каждого участника.
+            <div class="section-content">
+                <div class="principles-list">
+                    <div class="principle-item">
+                        <span class="principle-icon">🔍</span>
+                        <div class="principle-text">
+                            <strong>Прозрачность</strong>
+                            <span>Все договорённости фиксируются письменно в чате</span>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-icon">⚖️</span>
+                        <div class="principle-text">
+                            <strong>Справедливость</strong>
+                            <span>Распределение строго пропорционально вкладу</span>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-icon">📌</span>
+                        <div class="principle-text">
+                            <strong>Ответственность</strong>
+                            <span>Каждый подтверждает свои обязательства</span>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-icon">🗣️</span>
+                        <div class="principle-text">
+                            <strong>Открытость</strong>
+                            <span>Публичное обсуждение и голосование</span>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-icon">🧾</span>
+                        <div class="principle-text">
+                            <strong>Документирование</strong>
+                            <span>Чеки, скрины, рыночные оценки</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="about-card">
-            <div class="about-header">
-                <h2>👥 Для кого это сообщество</h2>
+
+        <!-- Как мы работаем -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-icon">🚀</span>
+                <h2>Как мы работаем</h2>
             </div>
-            <div class="about-content">
-                <p>Avantyurist открыт для всех, кто хочет:</p>
-                <ul>
-                    <li>Реализовать совместный проект с чёткими правилами</li>
-                    <li>Найти партнёров для вложений и совместной работы</li>
-                    <li>Объединить ресурсы для достижения общей цели</li>
-                    <li>Участвовать в проектах с прозрачным распределением прибыли</li>
+            <div class="section-content">
+                <p>Любой участник может предложить проект, описав его по чёткой структуре. После обсуждения и одобрения создаётся отдельная ветка, где участники:</p>
+                <ul class="steps-list">
+                    <li><span class="step-marker">1</span> Распределяют роли и обязанности</li>
+                    <li><span class="step-marker">2</span> Определяют вклады (деньги, материалы, инструменты)</li>
+                    <li><span class="step-marker">3</span> Фиксируют сроки и этапы</li>
+                    <li><span class="step-marker">4</span> Согласовывают порядок распределения результата</li>
                 </ul>
-                <p>Присоединяйтесь к нам, чтобы воплощать смелые идеи вместе!</p>
+                <div class="highlight-box">
+                    <span class="emoji">💡</span>
+                    <span><strong style="color: #6ee7b7;">Главное правило:</strong> все договорённости — только письменно. Это защищает интересы каждого участника.</span>
+                </div>
             </div>
         </div>
-        
+
+        <!-- Для кого -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-icon">👥</span>
+                <h2>Для кого это сообщество</h2>
+            </div>
+            <div class="section-content">
+                <p>Avantyurist открыт для всех, кто хочет:</p>
+                <div class="audience-grid">
+                    <div class="audience-item">
+                        <span class="audience-icon">🎯</span>
+                        <span class="audience-text">Реализовать совместный проект с чёткими правилами</span>
+                    </div>
+                    <div class="audience-item">
+                        <span class="audience-icon">🤝</span>
+                        <span class="audience-text">Найти партнёров для вложений и совместной работы</span>
+                    </div>
+                    <div class="audience-item">
+                        <span class="audience-icon">💰</span>
+                        <span class="audience-text">Объединить ресурсы для достижения общей цели</span>
+                    </div>
+                    <div class="audience-item">
+                        <span class="audience-icon">📊</span>
+                        <span class="audience-text">Участвовать в проектах с прозрачным распределением прибыли</span>
+                    </div>
+                </div>
+                <p style="margin-top: 1.2rem; font-weight: 500; color: #a5b4fc;">Присоединяйтесь к нам, чтобы воплощать смелые идеи вместе!</p>
+            </div>
+        </div>
+
         <div class="footnote">
             📌 <strong>Avantyurist</strong> — сообщество, где идеи становятся общим делом.<br>
             По всем вопросам обращайтесь к администраторам группы.
