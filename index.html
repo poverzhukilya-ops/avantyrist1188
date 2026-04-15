@@ -45,7 +45,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Изображение группы */
         .group-image-wrapper {
             display: flex;
             justify-content: center;
@@ -69,7 +68,6 @@
             border-color: rgba(102, 126, 234, 0.4);
         }
 
-        /* Заголовки */
         .main-title {
             font-size: clamp(1.8rem, 8vw, 2.3rem);
             font-weight: 800;
@@ -96,7 +94,7 @@
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.85rem;
             text-align: center;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
@@ -105,113 +103,156 @@
             gap: 6px;
         }
 
-        /* Окно с вкладками */
-        .tabs-window {
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 24px;
-            margin: 1.5rem 0 1rem;
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            max-height: 460px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+        /* Аккордеон */
+        .accordion {
+            margin-bottom: 0.5rem;
         }
 
-        .tabs-window::-webkit-scrollbar {
-            width: 4px;
-        }
-        .tabs-window::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .tabs-window::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-        }
-        .tabs-window::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.25);
+        .accordion-item {
+            margin-bottom: 8px;
         }
 
-        .tabs-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        /* Кнопки вкладок */
-        .tab-button {
+        .accordion-header {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 50px;
             padding: 14px 18px;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: 600;
             color: rgba(255, 255, 255, 0.85);
             cursor: pointer;
             transition: all 0.25s ease;
-            font-family: inherit;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
             gap: 14px;
-            width: 100%;
-            text-align: left;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            text-decoration: none;
         }
 
-        .tab-button:hover {
-            background: rgba(102, 126, 234, 0.15);
-            border-color: rgba(102, 126, 234, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(102, 126, 234, 0.2);
+        .accordion-header:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.2);
             color: #fff;
         }
 
-        .tab-button:active {
-            transform: translateY(0);
-            transition: all 0.1s;
+        .accordion-icon {
+            font-size: 1.4rem;
+            width: 32px;
+            text-align: center;
         }
 
-        .tab-icon {
+        .accordion-arrow {
+            margin-left: auto;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(90deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 4px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        /* Вкладки внутри аккордеона */
+        .sub-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 8px 0 8px 12px;
+        }
+
+        .sub-tab {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 40px;
+            padding: 11px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .sub-tab:hover {
+            background: rgba(102, 126, 234, 0.08);
+            border-color: rgba(102, 126, 234, 0.15);
+            color: #a5b4fc;
+            transform: translateX(4px);
+        }
+
+        .sub-tab-icon {
+            font-size: 1.2rem;
+            width: 28px;
+            text-align: center;
+        }
+
+        /* Отдельная кнопка рейтинга */
+        .rating-button {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(251, 191, 36, 0.06));
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 50px;
+            padding: 14px 18px;
+            margin-top: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fbbf24;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .rating-button:hover {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(251, 191, 36, 0.1));
+            border-color: rgba(251, 191, 36, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(251, 191, 36, 0.2);
+            color: #fcd34d;
+        }
+
+        .rating-icon {
             font-size: 1.5rem;
-            flex-shrink: 0;
             width: 36px;
             text-align: center;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
-        .tab-text {
-            flex: 1;
-            line-height: 1.4;
-            font-weight: 500;
+        .badge-new {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            margin-left: 8px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
-        /* Особый стиль для кнопки рейтинга */
-        .tab-button:last-child {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(251, 191, 36, 0.08));
-            border-color: rgba(251, 191, 36, 0.2);
-        }
-
-        .tab-button:last-child:hover {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(251, 191, 36, 0.12));
-            border-color: rgba(251, 191, 36, 0.4);
-            box-shadow: 0 10px 20px -10px rgba(251, 191, 36, 0.2);
-        }
-
-        /* Декоративная линия */
         .decor-line {
             width: 60px;
             height: 3px;
             background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
-            margin: 1.2rem auto 0.8rem;
+            margin: 1.5rem auto 0.8rem;
             border-radius: 3px;
         }
 
-        /* Информационный текст */
         .info-text {
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             text-align: center;
             color: rgba(255, 255, 255, 0.45);
             font-size: 0.75rem;
@@ -222,18 +263,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 0.2rem;
-        }
-
-        .badge-new {
-            background: rgba(245, 158, 11, 0.2);
-            color: #fbbf24;
-            font-size: 0.6rem;
-            font-weight: 600;
-            padding: 0.2rem 0.5rem;
-            border-radius: 30px;
-            margin-left: 6px;
-            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
         /* Адаптив */
@@ -247,68 +276,34 @@
                 border-radius: 32px;
             }
 
-            .main-title {
-                font-size: 1.8rem;
-            }
-
-            .group-name {
-                font-size: 1.2rem;
-            }
-
             .group-image {
                 width: 110px;
                 height: 110px;
             }
 
-            .tabs-window {
-                max-height: 400px;
-                padding: 0.8rem;
-            }
-
-            .tab-button {
+            .accordion-header {
                 padding: 12px 14px;
                 font-size: 14px;
-                gap: 12px;
             }
 
-            .tab-icon {
-                font-size: 1.3rem;
-                width: 32px;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .hero-card {
-                padding: 1.2rem 1rem;
-            }
-
-            .group-image {
-                width: 95px;
-                height: 95px;
-            }
-
-            .tab-button {
-                padding: 10px 12px;
+            .sub-tab {
+                padding: 10px 14px;
                 font-size: 13px;
             }
 
-            .tab-icon {
-                font-size: 1.2rem;
-                width: 28px;
+            .rating-button {
+                padding: 12px 14px;
+                font-size: 14px;
             }
         }
 
-        /* Анимация для вкладок */
-        .tab-button {
+        /* Анимация */
+        .accordion-header, .rating-button {
             animation: slideIn 0.4s ease backwards;
         }
 
-        .tab-button:nth-child(1) { animation-delay: 0.05s; }
-        .tab-button:nth-child(2) { animation-delay: 0.1s; }
-        .tab-button:nth-child(3) { animation-delay: 0.15s; }
-        .tab-button:nth-child(4) { animation-delay: 0.2s; }
-        .tab-button:nth-child(5) { animation-delay: 0.25s; }
-        .tab-button:nth-child(6) { animation-delay: 0.3s; }
+        .accordion-header { animation-delay: 0.1s; }
+        .rating-button { animation-delay: 0.2s; }
 
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(-10px); }
@@ -320,12 +315,10 @@
     <div class="container">
         <div class="hero-card">
             
-            <!-- Изображение группы -->
             <div class="group-image-wrapper">
                 <img src="photo_2026-03-26_07-43-54.jpg" alt="Avantyurist" class="group-image">
             </div>
             
-            <!-- Заголовки -->
             <div class="main-title">
                 Регламент группы
             </div>
@@ -336,51 +329,61 @@
                 <span>📌</span> Правила и механизмы сообщества
             </div>
             
-            <!-- Вкладки -->
-            <div class="tabs-window">
-                <div class="tabs-container">
-                    
-                    <button class="tab-button" onclick="location.href='joint-projects.html'">
-                        <span class="tab-icon">🤝</span>
-                        <span class="tab-text">Совместные проекты</span>
-                    </button>
-                    
-                    <button class="tab-button" onclick="location.href='about.html'">
-                        <span class="tab-icon">📖</span>
-                        <span class="tab-text">Информация о группе</span>
-                    </button>
-                    
-                    <button class="tab-button" onclick="location.href='invest.html'">
-                        <span class="tab-icon">💰</span>
-                        <span class="tab-text">Одиночное инвестирование</span>
-                    </button>
-                    
-                    <button class="tab-button" onclick="location.href='reputation.html'">
-                        <span class="tab-icon">⭐</span>
-                        <span class="tab-text">Система репутации участников</span>
-                    </button>
-                    
-                    <button class="tab-button" onclick="location.href='verification.html'">
-                        <span class="tab-icon">✅</span>
-                        <span class="tab-text">Верификация участников</span>
-                    </button>
-                    
-                    <button class="tab-button" onclick="location.href='rating.html'">
-                        <span class="tab-icon">🏆</span>
-                        <span class="tab-text">Рейтинг участников</span>
-                        <span class="badge-new">NEW</span>
-                    </button>
-                    
+            <!-- Аккордеон "Правила сообщества" -->
+            <div class="accordion">
+                <div class="accordion-item" id="rulesAccordion">
+                    <div class="accordion-header" onclick="toggleAccordion()">
+                        <span class="accordion-icon">📋</span>
+                        <span>Правила сообщества</span>
+                        <span class="accordion-arrow">▶</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="sub-tabs">
+                            <a href="joint-projects.html" class="sub-tab">
+                                <span class="sub-tab-icon">🤝</span>
+                                <span>Совместные проекты</span>
+                            </a>
+                            <a href="about.html" class="sub-tab">
+                                <span class="sub-tab-icon">📖</span>
+                                <span>Информация о группе</span>
+                            </a>
+                            <a href="invest.html" class="sub-tab">
+                                <span class="sub-tab-icon">💰</span>
+                                <span>Одиночное инвестирование</span>
+                            </a>
+                            <a href="reputation.html" class="sub-tab">
+                                <span class="sub-tab-icon">⭐</span>
+                                <span>Система репутации участников</span>
+                            </a>
+                            <a href="verification.html" class="sub-tab">
+                                <span class="sub-tab-icon">✅</span>
+                                <span>Верификация участников</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <!-- Декоративная линия и подсказка -->
+            <!-- Отдельная кнопка рейтинга -->
+            <a href="rating.html" class="rating-button">
+                <span class="rating-icon">🏆</span>
+                <span>Рейтинг участников</span>
+                <span class="badge-new">NEW</span>
+            </a>
+            
             <div class="decor-line"></div>
             <div class="info-text">
-                <p>📋 Выберите вкладку — откроется подробная информация</p>
-                <p>🔽 Можно листать окно вниз</p>
+                <p>📋 Выберите раздел — откроется подробная информация</p>
+                <p>🔽 Правила сообщества можно развернуть</p>
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleAccordion() {
+            const accordion = document.getElementById('rulesAccordion');
+            accordion.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
