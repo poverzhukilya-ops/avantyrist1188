@@ -77,7 +77,6 @@
             padding: 2rem 1.5rem 3rem;
         }
 
-        /* Заголовок */
         .page-hero {
             text-align: center;
             margin-bottom: 2.5rem;
@@ -105,7 +104,6 @@
             font-size: 0.95rem;
         }
 
-        /* Категории партнёров */
         .category-section {
             margin-bottom: 2.5rem;
             animation: fadeInUp 0.5s ease backwards;
@@ -140,14 +138,12 @@
             margin-left: 12px;
         }
 
-        /* Сетка партнёров */
         .partners-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.2rem;
         }
 
-        /* Карточка партнёра */
         .partner-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
@@ -255,7 +251,14 @@
             color: #a5b4fc;
         }
 
-        /* Призыв к сотрудничеству */
+        .empty-message {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            grid-column: 1 / -1;
+        }
+
         .cta-card {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.05));
             border-radius: 28px;
@@ -306,7 +309,6 @@
             transform: scale(1.02);
         }
 
-        /* Анимации */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -322,7 +324,6 @@
         .category-section:nth-child(3) { animation-delay: 0.2s; }
         .category-section:nth-child(4) { animation-delay: 0.25s; }
 
-        /* Адаптив */
         @media (max-width: 700px) {
             .partners-grid {
                 grid-template-columns: 1fr;
@@ -364,16 +365,6 @@
                 font-size: 1.3rem;
             }
         }
-
-        @media (max-width: 480px) {
-            .page-hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .partner-name {
-                font-size: 0.9rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -404,40 +395,10 @@
         <div class="category-section">
             <div class="category-header">
                 <span class="category-icon">💬</span>
-                <h2>Telegram группы <span class="category-count">2</span></h2>
+                <h2>Telegram группы <span class="category-count">0</span></h2>
             </div>
             <div class="partners-grid">
-                <!-- Партнёр 1 -->
-                <a href="https://t.me/crypto_invest_community" target="_blank" class="partner-card">
-                    <img src="https://via.placeholder.com/56/667eea/ffffff?text=C" alt="Crypto Invest" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#667eea,#764ba2)';this.src=''">
-                    <div class="partner-info">
-                        <div class="partner-name">
-                            <span class="partner-badge"></span>
-                            Crypto Invest Community
-                        </div>
-                        <div class="partner-type">
-                            <span class="partner-type-icon">💬</span> Telegram группа
-                        </div>
-                        <div class="partner-description">Криптовалюты, инвестиции, аналитика</div>
-                    </div>
-                    <span class="partner-arrow">→</span>
-                </a>
-                
-                <!-- Партнёр 2 -->
-                <a href="https://t.me/startup_ideas_ru" target="_blank" class="partner-card">
-                    <img src="https://via.placeholder.com/56/764ba2/ffffff?text=S" alt="Startup Ideas" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#764ba2,#f59e0b)';this.src=''">
-                    <div class="partner-info">
-                        <div class="partner-name">
-                            <span class="partner-badge"></span>
-                            Startup Ideas
-                        </div>
-                        <div class="partner-type">
-                            <span class="partner-type-icon">💬</span> Telegram группа
-                        </div>
-                        <div class="partner-description">Стартапы, идеи, менторство</div>
-                    </div>
-                    <span class="partner-arrow">→</span>
-                </a>
+                <div class="empty-message">Пока нет партнёров в этой категории</div>
             </div>
         </div>
 
@@ -445,40 +406,10 @@
         <div class="category-section">
             <div class="category-header">
                 <span class="category-icon">📢</span>
-                <h2>Telegram каналы <span class="category-count">2</span></h2>
+                <h2>Telegram каналы <span class="category-count">0</span></h2>
             </div>
             <div class="partners-grid">
-                <!-- Партнёр 3 -->
-                <a href="https://t.me/+SnWrM3MqHsYxNWQy" target="_blank" class="partner-card">
-                    <img src="" alt="Invest News" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#f59e0b,#ef4444)';this.src=''">
-                    <div class="partner-info">
-                        <div class="Mr.proper.official">
-                            <span class="partner-badge"></span>
-                            Invest News Daily
-                        </div>
-                        <div class="partner-type">
-                            <span class="partner-type-icon">📢</span> Telegram канал
-                        </div>
-                        <div class="partner-description">Новости инвестиций каждый день</div>
-                    </div>
-                    <span class="partner-arrow">→</span>
-                </a>
-                
-                <!-- Партнёр 4 -->
-                <a href="https://t.me/crypto_signals_pro" target="_blank" class="partner-card">
-                    <img src="https://via.placeholder.com/56/34d399/ffffff?text=C" alt="Crypto Signals" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#34d399,#3b82f6)';this.src=''">
-                    <div class="partner-info">
-                        <div class="partner-name">
-                            <span class="partner-badge"></span>
-                            Crypto Signals Pro
-                        </div>
-                        <div class="partner-type">
-                            <span class="partner-type-icon">📢</span> Telegram канал
-                        </div>
-                        <div class="partner-description">Торговые сигналы и аналитика</div>
-                    </div>
-                    <span class="partner-arrow">→</span>
-                </a>
+                <div class="empty-message">Пока нет партнёров в этой категории</div>
             </div>
         </div>
 
@@ -486,65 +417,21 @@
         <div class="category-section">
             <div class="category-header">
                 <span class="category-icon">▶️</span>
-                <h2>YouTube каналы <span class="category-count">2</span></h2>
+                <h2>YouTube каналы <span class="category-count">0</span></h2>
             </div>
             <div class="partners-grid">
-                <!-- Партнёр 5 -->
-                <a href="https://youtube.com/@invest_academy" target="_blank" class="partner-card">
-                    <img src="https://via.placeholder.com/56/ef4444/ffffff?text=IA" alt="Invest Academy" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#ef4444,#f59e0b)';this.src=''">
-                    <div class="partner-info">
-                        <div class="partner-name">
-                            <span class="partner-badge"></span>
-                            Invest Academy
-                        </div>
-                        <div class="partner-type">
-                            <span class="partner-type-icon">▶️</span> YouTube канал
-                        </div>
-                        <div class="partner-description">Обучение инвестициям с нуля</div>
-                    </div>
-                    <span class="partner-arrow">→</span>
-                </a>
-                
-                <!-- Партнёр 6 -->
-                <a href="https://youtube.com/@crypto_world" target="_blank" class="partner-card">
-                    <img src="https://via.placeholder.com/56/3b82f6/ffffff?text=CW" alt="Crypto World" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#3b82f6,#a5b4fc)';this.src=''">
-                    <div class="partner-info">
-                        <div class="partner-name">
-                            <span class="partner-badge"></span>
-                            Crypto World
-                        </div>
-                        <div class="partner-type">
-                            <span class="partner-type-icon">▶️</span> YouTube канал
-                        </div>
-                        <div class="partner-description">Всё о криптовалютах и блокчейне</div>
-                    </div>
-                    <span class="partner-arrow">→</span>
-                </a>
+                <div class="empty-message">Пока нет партнёров в этой категории</div>
             </div>
         </div>
 
-        <!-- Другие соцсети -->
+        <!-- Другие платформы -->
         <div class="category-section">
             <div class="category-header">
                 <span class="category-icon">🌐</span>
-                <h2>Другие платформы <span class="category-count">1</span></h2>
+                <h2>Другие платформы <span class="category-count">0</span></h2>
             </div>
             <div class="partners-grid">
-                <!-- Партнёр 7 -->
-                <a href="https://vk.com/invest_club" target="_blank" class="partner-card">
-                    <img src="https://via.placeholder.com/56/0077ff/ffffff?text=VK" alt="VK Invest Club" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#0077ff,#a5b4fc)';this.src=''">
-                    <div class="partner-info">
-                        <div class="partner-name">
-                            <span class="partner-badge"></span>
-                            Invest Club VK
-                        </div>
-                        <div class="partner-type">
-                            <span class="partner-type-icon">🌐</span> ВКонтакте
-                        </div>
-                        <div class="partner-description">Сообщество инвесторов ВКонтакте</div>
-                    </div>
-                    <span class="partner-arrow">→</span>
-                </a>
+                <div class="empty-message">Пока нет партнёров в этой категории</div>
             </div>
         </div>
 
