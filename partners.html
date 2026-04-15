@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
+    <title>Наши партнёры | Avantyurist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .back-link:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-3px);
+        }
+
+        .nav-title {
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        /* Заголовок */
+        .page-hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 8vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 40%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .page-hero .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+
+        /* Категории партнёров */
+        .category-section {
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.5s ease backwards;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .category-icon {
+            font-size: 1.8rem;
+        }
+
+        .category-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            letter-spacing: -0.01em;
+        }
+
+        .category-count {
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            margin-left: 12px;
+        }
+
+        /* Сетка партнёров */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        /* Карточка партнёра */
+        .partner-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.2rem;
+            gap: 14px;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(102, 126, 234, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 15px 25px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .partner-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: white;
+            text-transform: uppercase;
+            box-shadow: 0 8px 15px -5px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        .partner-card:hover .partner-avatar {
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .partner-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .partner-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #e2e8f0;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .partner-badge {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+            flex-shrink: 0;
+        }
+
+        .partner-type {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.45);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .partner-type-icon {
+            font-size: 0.9rem;
+        }
+
+        .partner-description {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .partner-arrow {
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .partner-card:hover .partner-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+            color: #a5b4fc;
+        }
+
+        /* Призыв к сотрудничеству */
+        .cta-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.05));
+            border-radius: 28px;
+            padding: 2rem 2rem;
+            margin-top: 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            animation: fadeInUp 0.5s ease 0.4s backwards;
+        }
+
+        .cta-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cta-card p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(102, 126, 234, 0.15);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: #a5b4fc;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: rgba(102, 126, 234, 0.25);
+            border-color: rgba(102, 126, 234, 0.5);
+            color: #c4b5fd;
+            transform: scale(1.02);
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-section:nth-child(1) { animation-delay: 0.1s; }
+        .category-section:nth-child(2) { animation-delay: 0.15s; }
+        .category-section:nth-child(3) { animation-delay: 0.2s; }
+        .category-section:nth-child(4) { animation-delay: 0.25s; }
+
+        /* Адаптив */
+        @media (max-width: 700px) {
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .top-nav {
+                padding: 0.7rem 1rem;
+            }
+
+            .container {
+                padding: 1.2rem 1rem 2rem;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .category-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .partner-card {
+                padding: 0.9rem 1rem;
+            }
+
+            .partner-avatar {
+                width: 50px;
+                height: 50px;
+                border-radius: 14px;
+            }
+
+            .cta-card {
+                padding: 1.5rem;
+            }
+
+            .cta-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .partner-name {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                На главную
+            </a>
+            <div class="nav-title">
+                <span>🤝</span> Наши партнёры
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-hero">
+            <h1>
+                <span>🤝</span> Наши партнёры
+                <span>🤝</span>
+            </h1>
+            <div class="subtitle">Сообщества и проекты, с которыми мы сотрудничаем</div>
+        </div>
+
+        <!-- Telegram группы -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">💬</span>
+                <h2>Telegram группы <span class="category-count">2</span></h2>
+            </div>
+            <div class="partners-grid">
+                <!-- Партнёр 1 -->
+                <a href="https://t.me/crypto_invest_community" target="_blank" class="partner-card">
+                    <img src="https://via.placeholder.com/56/667eea/ffffff?text=C" alt="Crypto Invest" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#667eea,#764ba2)';this.src=''">
+                    <div class="partner-info">
+                        <div class="partner-name">
+                            <span class="partner-badge"></span>
+                            Crypto Invest Community
+                        </div>
+                        <div class="partner-type">
+                            <span class="partner-type-icon">💬</span> Telegram группа
+                        </div>
+                        <div class="partner-description">Криптовалюты, инвестиции, аналитика</div>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                </a>
+                
+                <!-- Партнёр 2 -->
+                <a href="https://t.me/startup_ideas_ru" target="_blank" class="partner-card">
+                    <img src="https://via.placeholder.com/56/764ba2/ffffff?text=S" alt="Startup Ideas" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#764ba2,#f59e0b)';this.src=''">
+                    <div class="partner-info">
+                        <div class="partner-name">
+                            <span class="partner-badge"></span>
+                            Startup Ideas
+                        </div>
+                        <div class="partner-type">
+                            <span class="partner-type-icon">💬</span> Telegram группа
+                        </div>
+                        <div class="partner-description">Стартапы, идеи, менторство</div>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Telegram каналы -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">📢</span>
+                <h2>Telegram каналы <span class="category-count">2</span></h2>
+            </div>
+            <div class="partners-grid">
+                <!-- Партнёр 3 -->
+                <a href="https://t.me/invest_news_daily" target="_blank" class="partner-card">
+                    <img src="https://via.placeholder.com/56/f59e0b/ffffff?text=I" alt="Invest News" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#f59e0b,#ef4444)';this.src=''">
+                    <div class="partner-info">
+                        <div class="partner-name">
+                            <span class="partner-badge"></span>
+                            Invest News Daily
+                        </div>
+                        <div class="partner-type">
+                            <span class="partner-type-icon">📢</span> Telegram канал
+                        </div>
+                        <div class="partner-description">Новости инвестиций каждый день</div>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                </a>
+                
+                <!-- Партнёр 4 -->
+                <a href="https://t.me/crypto_signals_pro" target="_blank" class="partner-card">
+                    <img src="https://via.placeholder.com/56/34d399/ffffff?text=C" alt="Crypto Signals" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#34d399,#3b82f6)';this.src=''">
+                    <div class="partner-info">
+                        <div class="partner-name">
+                            <span class="partner-badge"></span>
+                            Crypto Signals Pro
+                        </div>
+                        <div class="partner-type">
+                            <span class="partner-type-icon">📢</span> Telegram канал
+                        </div>
+                        <div class="partner-description">Торговые сигналы и аналитика</div>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- YouTube каналы -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">▶️</span>
+                <h2>YouTube каналы <span class="category-count">2</span></h2>
+            </div>
+            <div class="partners-grid">
+                <!-- Партнёр 5 -->
+                <a href="https://youtube.com/@invest_academy" target="_blank" class="partner-card">
+                    <img src="https://via.placeholder.com/56/ef4444/ffffff?text=IA" alt="Invest Academy" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#ef4444,#f59e0b)';this.src=''">
+                    <div class="partner-info">
+                        <div class="partner-name">
+                            <span class="partner-badge"></span>
+                            Invest Academy
+                        </div>
+                        <div class="partner-type">
+                            <span class="partner-type-icon">▶️</span> YouTube канал
+                        </div>
+                        <div class="partner-description">Обучение инвестициям с нуля</div>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                </a>
+                
+                <!-- Партнёр 6 -->
+                <a href="https://youtube.com/@crypto_world" target="_blank" class="partner-card">
+                    <img src="https://via.placeholder.com/56/3b82f6/ffffff?text=CW" alt="Crypto World" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#3b82f6,#a5b4fc)';this.src=''">
+                    <div class="partner-info">
+                        <div class="partner-name">
+                            <span class="partner-badge"></span>
+                            Crypto World
+                        </div>
+                        <div class="partner-type">
+                            <span class="partner-type-icon">▶️</span> YouTube канал
+                        </div>
+                        <div class="partner-description">Всё о криптовалютах и блокчейне</div>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Другие соцсети -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🌐</span>
+                <h2>Другие платформы <span class="category-count">1</span></h2>
+            </div>
+            <div class="partners-grid">
+                <!-- Партнёр 7 -->
+                <a href="https://vk.com/invest_club" target="_blank" class="partner-card">
+                    <img src="https://via.placeholder.com/56/0077ff/ffffff?text=VK" alt="VK Invest Club" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#0077ff,#a5b4fc)';this.src=''">
+                    <div class="partner-info">
+                        <div class="partner-name">
+                            <span class="partner-badge"></span>
+                            Invest Club VK
+                        </div>
+                        <div class="partner-type">
+                            <span class="partner-type-icon">🌐</span> ВКонтакте
+                        </div>
+                        <div class="partner-description">Сообщество инвесторов ВКонтакте</div>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Призыв к сотрудничеству -->
+        <div class="cta-card">
+            <h3>
+                <span>🚀</span> Станьте нашим партнёром
+                <span>🚀</span>
+            </h3>
+            <p>Хотите разместить ваше сообщество в списке партнёров? Свяжитесь с администрацией группы.</p>
+            <a href="https://t.me/avantyurist_admin" target="_blank" class="cta-button">
+                <span>📩</span> Написать администратору
+                <span>→</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
