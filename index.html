@@ -11,8 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-       body {
+body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: radial-gradient(circle at 30% 10%, #1a2a3a, #0b1219);
     background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noise)" opacity="0.08"/%3E%3C/svg%3E'), radial-gradient(circle at 30% 10%, #1a2a3a, #0b1219);
@@ -41,15 +40,37 @@ body::before {
 }
 
 .container {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
-   /* Гвоздики по углам */
+
+.hero-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 2rem 1.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Гвоздики по углам */
 .hero-card .corner-top-left,
 .hero-card .corner-top-right,
 .hero-card .corner-bottom-left,
 .hero-card .corner-bottom-right {
-    content: '';
     position: absolute;
     width: 14px;
     height: 14px;
@@ -59,43 +80,34 @@ body::before {
         0 3px 5px rgba(0,0,0,0.5),
         0 0 0 1px rgba(0,0,0,0.1) inset,
         0 -2px 3px rgba(0,0,0,0.2) inset;
-    z-index: 2;
+    z-index: 12;
 }
 
-/* Верхний левый */
 .hero-card .corner-top-left {
     top: 14px;
     left: 14px;
 }
 
-/* Верхний правый */
 .hero-card .corner-top-right {
     top: 14px;
     right: 14px;
 }
 
-/* Нижний левый */
 .hero-card .corner-bottom-left {
     bottom: 14px;
     left: 14px;
 }
 
-/* Нижний правый */
 .hero-card .corner-bottom-right {
     bottom: 14px;
     right: 14px;
 }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
-        .group-image-wrapper {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
+.group-image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
         .group-image {
             width: 130px;
             height: 130px;
