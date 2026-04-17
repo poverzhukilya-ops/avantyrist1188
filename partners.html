@@ -104,7 +104,6 @@
             font-size: 1rem;
         }
 
-        /* Категории — более компактно и современно */
         .category-section {
             margin-bottom: 2rem;
             animation: fadeInUp 0.5s ease backwards;
@@ -145,7 +144,6 @@
             gap: 1rem;
         }
 
-        /* Карточка партнёра — улучшенная */
         .partner-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
@@ -265,7 +263,6 @@
             border: 1px dashed rgba(255, 255, 255, 0.05);
         }
 
-        /* Призыв к действию — более заметный */
         .cta-card {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.12), rgba(118, 75, 162, 0.08));
             border-radius: 32px;
@@ -321,7 +318,6 @@
             box-shadow: 0 12px 28px -10px rgba(102, 126, 234, 0.4);
         }
 
-        /* Анимации */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -337,7 +333,6 @@
         .category-section:nth-child(3) { animation-delay: 0.2s; }
         .category-section:nth-child(4) { animation-delay: 0.25s; }
 
-        /* Адаптив */
         @media (max-width: 700px) {
             .partners-grid {
                 grid-template-columns: 1fr;
@@ -382,7 +377,6 @@
     </style>
 </head>
 <body>
-    <!-- навигация и контент остаются без изменений -->
     <div class="top-nav">
         <div class="nav-inner">
             <a href="index.html" class="back-link">
@@ -417,30 +411,30 @@
             </div>
         </div>
 
-<!-- Telegram каналы -->
-<div class="category-section">
-    <div class="category-header">
-        <span class="category-icon">📢</span>
-        <h2>Telegram каналы <span class="category-count">1</span></h2>
-    </div>
-    <div class="partners-grid">
-        <!-- Mr.proper.official -->
-        <a href="https://t.me/+SnWrM3MqHsYxNWQy" target="_blank" class="partner-card">
-            <img src="https://t.me/i/userpic/320/Mr_proper_official.jpg" alt="Mr.proper.official" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#f59e0b,#ef4444)';this.src='';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center';this.textContent='M';">
-            <div class="partner-info">
-                <div class="partner-name">
-                    <span class="partner-badge"></span>
-                    Mr.proper.official
-                </div>
-                <div class="partner-type">
-                    <span class="partner-type-icon">📢</span> Telegram канал
-                </div>
-                <div class="partner-description">Официальный канал</div>
+        <!-- Telegram каналы -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">📢</span>
+                <h2>Telegram каналы <span class="category-count">1</span></h2>
             </div>
-            <span class="partner-arrow">→</span>
-        </a>
-    </div>
-</div>
+            <div class="partners-grid">
+                <!-- Mr.proper.official -->
+                <a href="https://t.me/+SnWrM3MqHsYxNWQy" target="_blank" class="partner-card">
+                    <img src="https://t.me/i/userpic/320/Mr_proper_official.jpg" alt="Mr.proper.official" class="partner-avatar" onerror="this.style.background='linear-gradient(135deg,#f59e0b,#ef4444)';this.src='';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center';this.textContent='M';">
+                    <div class="partner-info">
+                        <div class="partner-name">
+                            <span class="partner-badge"></span>
+                            Mr.proper.official
+                        </div>
+                        <div class="partner-type">
+                            <span class="partner-type-icon">📢</span> Telegram канал
+                        </div>
+                        <div class="partner-description">Официальный канал</div>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                </a>
+            </div>
+        </div>
 
         <!-- YouTube каналы -->
         <div class="category-section">
